@@ -13,15 +13,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import de.fraunhofer.dataspaces.iese.systemadapter.entity.JSON;
+import de.fraunhofer.dataspaces.iese.systemadapter.entity.Json;
 
 
 @RestController
 @RequestMapping("/storage/filesystem")
-public class JSONFileSystemController {
+public class JsonFileSystemControllerRest {
 
 	@PostMapping("/{file_name}")
-	public void saveFile(@PathVariable String file_name, @RequestBody JSON json) throws IOException {
+	public void saveFile(@PathVariable String file_name, @RequestBody Json json) throws IOException {
 		FileWriter fileWriter = new FileWriter(file_name);
 		
 		fileWriter.append(json.toString());

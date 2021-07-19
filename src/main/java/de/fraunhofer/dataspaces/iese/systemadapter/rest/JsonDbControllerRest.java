@@ -15,32 +15,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import de.fraunhofer.dataspaces.iese.systemadapter.entity.JSON;
-import de.fraunhofer.dataspaces.iese.systemadapter.service.JSONService;
+import de.fraunhofer.dataspaces.iese.systemadapter.entity.Json;
+import de.fraunhofer.dataspaces.iese.systemadapter.service.JsonService;
 
 @RestController
 @RequestMapping("/storage/database")
-public class JSONDBController {
+public class JsonDbControllerRest {
 	
-	JSONService service;
+	JsonService service;
 	
 	@Autowired
-	public JSONDBController(JSONService service) {
+	public JsonDbControllerRest(JsonService service) {
 		this.service = service;
 	}
 	
 	@GetMapping("/all")
-	public List<JSON> getAll() {
+	public List<Json> getAll() {
 		return service.findAll();
 	}
 	
 	@GetMapping("/{json_id}") 
-	public JSON getById(@PathVariable int json_id) {
+	public Json getById(@PathVariable int json_id) {
 		return service.findById(json_id);
 	}
 	
 	@PostMapping("/")
-	public JSON postNew(@RequestBody JSON json) {
+	public Json postNew(@RequestBody Json json) {
 		
 		json.setId(0);
 		
@@ -50,7 +50,7 @@ public class JSONDBController {
 	}
 	
 	@PutMapping("/")
-	public JSON putNew(@RequestBody JSON json) {
+	public Json putNew(@RequestBody Json json) {
 		service.save(json);
 		
 		return json;
