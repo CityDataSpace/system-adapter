@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="json_data")
-public class JSON {
+public class Json {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,11 +23,11 @@ public class JSON {
 	private String data;
 	
 	
-	public JSON() {
+	public Json() {
 		
 	}
 
-	public JSON(int id, String name, String data) {
+	public Json(int id, String name, String data) {
 		this.id = id;
 		this.name = name;
 		this.data = data;
