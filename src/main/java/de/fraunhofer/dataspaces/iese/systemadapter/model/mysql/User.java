@@ -1,11 +1,14 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.model.mysql;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import de.fraunhofer.dataspaces.iese.systemadapter.encryption.AesEncryption;
 
 @Entity(name="users")
 @Table(schema="systemadapter")
@@ -26,6 +29,7 @@ public class User {
 	private String email;
 	
 	@Column(name="password")
+	@Convert(converter = AesEncryption.class)
 	private String password;
 	
 	public User() {
