@@ -18,7 +18,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@PropertySource({ "classpath:user.properties" })
+@PropertySource({ "classpath:database/database.properties", "classpath:database/mysql.properties" })
 @EnableJpaRepositories(
 		basePackages = "de.fraunhofer.dataspaces.iese.systemadapter.repository.user",
 		entityManagerFactoryRef = "userEntityManager",
