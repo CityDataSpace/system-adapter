@@ -19,11 +19,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 @PropertySource({ "classpath:database/database.properties", "classpath:database/postgres.properties" })
 @EnableJpaRepositories(
-		basePackages = "de.fraunhofer.dataspaces.iese.systemadapter.repository.product",
+		basePackages = "de.fraunhofer.dataspaces.iese.systemadapter.repository.postgres",
 		entityManagerFactoryRef = "productEntityManager",
 		transactionManagerRef = "productTransactionManager"
 )
-public class PersistanceProductConfiguration {
+public class PersistancePostgresConfiguration {
 	
 	@Autowired
 	private Environment env;
@@ -35,7 +35,7 @@ public class PersistanceProductConfiguration {
         	= new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(productDataSource());
 		em.setPackagesToScan(
-        new String[] { "de.fraunhofer.dataspaces.iese.systemadapter.product" });
+        new String[] { "de.fraunhofer.dataspaces.iese.systemadapter.model.postgres" });
 		
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		
