@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,23 +13,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.fraunhofer.dataspaces.iese.systemadapter.data.FraunhoferDataSpace;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
-import de.fraunhofer.dataspaces.iese.systemadapter.repository.mysql.PayloadMysqlRepository;
-import de.fraunhofer.dataspaces.iese.systemadapter.repository.mysql.UserMysqlRepository;
+import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.PayloadMysqlService;
+import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlService;
 
 @Component
 @EnableTransactionManagement
 public class DummyDatabase {
 
 	@Autowired
-	private UserMysqlRepository userMysqlRepository;
+	private UserMysqlService userMysqlService;
 	
 	@Autowired
-	private PayloadMysqlRepository payloadMysqlRepository;
+	private PayloadMysqlService payloadMysqlService;
 	
 	@Autowired 
 	private PasswordEncoder passwordEncoder;
 	
-	@Transactional("userTransactionManager")
+	
 	public void fillInDatabaseUser() {
 		User user = new User();
 		
@@ -39,23 +38,40 @@ public class DummyDatabase {
 		user.setEmail("arianajdari94@gmail.com");
 		user.setPassword(passwordEncoder.encode("my_strong_password"));
 		
-		userMysqlRepository.save(user);
+		userMysqlService.save(user);
 	}
 	
-	@Transactional("userTransactionManager")
+	
 	public void fillInDatabasePayload() throws JsonProcessingException {
 		Payload payload = new Payload();
 		
 		FraunhoferDataSpace fraunhoferDataSpace = new FraunhoferDataSpace();
 		
 		fraunhoferDataSpace
-			.setName("My Policy2")
+			.setName("My Policy")
 			.setDuration("2 days")
 			.setType("Restriction");
 		
 		payload.setHeaderId(UUID.randomUUID());
 		payload.setData(new ObjectMapper().writeValueAsString(fraunhoferDataSpace));
 		
-		payloadMysqlRepository.save(payload);
+		payloadMysqlService.save(payload);
+	}
+	
+	
+	public Payload fillInDatabasePayloadAndReturn() throws JsonProcessingException {
+		Payload payload = new Payload();
+		
+		FraunhoferDataSpace fraunhoferDataSpace = new FraunhoferDataSpace();
+		
+		fraunhoferDataSpace
+			.setName("My Policy")
+			.setDuration("2 days")
+			.setType("Restriction");
+		
+		payload.setHeaderId(UUID.randomUUID());
+		payload.setData(new ObjectMapper().writeValueAsString(fraunhoferDataSpace));
+		
+		return payloadMysqlService.saveAndReturn(payload);
 	}
 }

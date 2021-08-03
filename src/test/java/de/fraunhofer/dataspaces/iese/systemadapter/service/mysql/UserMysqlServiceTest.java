@@ -1,4 +1,4 @@
-package de.fraunhofer.dataspaces.iese.systemadapter.repository.mysql;
+package de.fraunhofer.dataspaces.iese.systemadapter.service.mysql;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,14 +24,14 @@ import de.fraunhofer.dataspaces.iese.systemadapter.configuration.PersistanceMysq
 
 
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-@SpringBootTest(classes = PersistanceMysqlConfiguration.class)
+@SpringBootTest(classes = {PersistanceMysqlConfiguration.class, UserMysqlService.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestMethodOrder(value = MethodName.class)
 @Import(BCryptConfig.class)
-public class UserMysqlRepositoryTest {
+public class UserMysqlServiceTest {
 	
 	@Autowired
-	private UserMysqlRepository userMysqlRepository;
+	private UserMysqlService userMysqlService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -47,7 +47,7 @@ public class UserMysqlRepositoryTest {
 	
 	private final String UPDATED_NAME = "James";
 	
-	public UserMysqlRepositoryTest() {
+	public UserMysqlServiceTest() {
 		
 	}
 	
@@ -60,7 +60,7 @@ public class UserMysqlRepositoryTest {
 		user.setEmail(EMAIL);
 		user.setPassword(passwordEncoder.encode(PASSWORD));
 		
-		newlyCreatedUser = userMysqlRepository.save(user);		
+		newlyCreatedUser = userMysqlService.saveAndReturn(user);		
 	}
 	
 	@Test
@@ -75,7 +75,7 @@ public class UserMysqlRepositoryTest {
 	
 	@Test
 	void B_checkUserRead() {
-		Optional<User> user = userMysqlRepository.findById(newlyCreatedUser.getId());
+		Optional<User> user = userMysqlService.findById(newlyCreatedUser.getId());
 		
 		assertThat(user.isPresent()).isTrue();
 		
@@ -92,7 +92,7 @@ public class UserMysqlRepositoryTest {
 	
 	@Test
 	void C_checkUserUpdate() {
-		Optional<User> user = userMysqlRepository.findById(newlyCreatedUser.getId());
+		Optional<User> user = userMysqlService.findById(newlyCreatedUser.getId());
 		
 		assertThat(user.isPresent()).isTrue();
 		
@@ -101,9 +101,9 @@ public class UserMysqlRepositoryTest {
 			
 			retrievedUser.setName(UPDATED_NAME);
 			
-			userMysqlRepository.save(retrievedUser);	
+			userMysqlService.update(retrievedUser.getId(), retrievedUser);	
 			
-			user = userMysqlRepository.findById(newlyCreatedUser.getId());
+			user = userMysqlService.findById(newlyCreatedUser.getId());
 			
 			assertThat(user.isPresent()).isTrue();
 			
@@ -118,7 +118,7 @@ public class UserMysqlRepositoryTest {
 	@Test
 	void D_checkUserDelete() {
 		try {
-			userMysqlRepository.deleteById(newlyCreatedUser.getId());
+			userMysqlService.deleteById(newlyCreatedUser.getId());
 		} catch(IllegalArgumentException iae) {
 			throw(iae);
 		}

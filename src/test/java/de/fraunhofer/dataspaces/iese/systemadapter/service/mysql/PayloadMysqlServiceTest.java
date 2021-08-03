@@ -1,4 +1,4 @@
-package de.fraunhofer.dataspaces.iese.systemadapter.repository.mysql;
+package de.fraunhofer.dataspaces.iese.systemadapter.service.mysql;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,13 +27,13 @@ import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
 
 
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-@SpringBootTest(classes = PersistanceMysqlConfiguration.class)
+@SpringBootTest(classes = {PersistanceMysqlConfiguration.class, PayloadMysqlService.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestMethodOrder(value = MethodName.class)
-public class PayloadMysqlRepositoryTest {
+public class PayloadMysqlServiceTest {
 	
 	@Autowired
-	private PayloadMysqlRepository payloadMysqlRepository;
+	private PayloadMysqlService payloadMysqlService;
 	
 	private Payload payload;
 	
@@ -45,7 +45,7 @@ public class PayloadMysqlRepositoryTest {
 	
 	private final String DATA;
 	
-	public PayloadMysqlRepositoryTest() throws JsonProcessingException {
+	public PayloadMysqlServiceTest() throws JsonProcessingException {
 		this.DATA = new ObjectMapper()
 						.writeValueAsString(new FraunhoferDataSpace()
 								.setName("Policy")
@@ -61,7 +61,7 @@ public class PayloadMysqlRepositoryTest {
 		payload.setHeaderId(HEADER_ID);
 		payload.setData(DATA);
 		
-		newlyCreatedPayload = payloadMysqlRepository.save(payload);
+		newlyCreatedPayload = payloadMysqlService.saveAndReturn(payload);
 	}
 	
 	@Test
@@ -73,7 +73,7 @@ public class PayloadMysqlRepositoryTest {
 	
 	@Test 
 	void B_checkPayloadRead() {
-		Optional<Payload> payload = payloadMysqlRepository.findById(newlyCreatedPayload.getId());
+		Optional<Payload> payload = payloadMysqlService.findById(newlyCreatedPayload.getId());
 		
 		assertThat(payload.isPresent()).isTrue();
 		
@@ -82,14 +82,14 @@ public class PayloadMysqlRepositoryTest {
 			
 			assertEquals(retrievedPayload.getId(), newlyCreatedPayload.getId());
 			assertEquals(retrievedPayload.getHeaderId(), newlyCreatedPayload.getHeaderId());
-			assertEquals(retrievedPayload.getData().replace("\"\"", "\"").replace("}\"", "}"), newlyCreatedPayload.getData());
+			assertEquals(retrievedPayload.getData(), newlyCreatedPayload.getData());
 			
 		}
 	}
 	
 	@Test
 	void C_checkPayloadUpdate() {
-		Optional<Payload> payload = payloadMysqlRepository.findById(newlyCreatedPayload.getId());
+		Optional<Payload> payload = payloadMysqlService.findById(newlyCreatedPayload.getId());
 		
 		assertThat(payload.isPresent()).isTrue();
 		
@@ -98,9 +98,9 @@ public class PayloadMysqlRepositoryTest {
 			
 			retrievedPayload.setHeaderId(UPDATED_HEADER_ID);
 			
-			payloadMysqlRepository.save(retrievedPayload);	
+			payloadMysqlService.save(retrievedPayload);	
 			
-			payload = payloadMysqlRepository.findById(newlyCreatedPayload.getId());
+			payload = payloadMysqlService.findById(newlyCreatedPayload.getId());
 			
 			assertThat(payload.isPresent()).isTrue();
 			
@@ -115,7 +115,7 @@ public class PayloadMysqlRepositoryTest {
 	@Test
 	void D_checkPayloadDelete() {
 		try {
-			payloadMysqlRepository.deleteById(newlyCreatedPayload.getId());
+			payloadMysqlService.deleteById(newlyCreatedPayload.getId());
 		} catch(IllegalArgumentException iae) {
 			throw(iae);
 		}

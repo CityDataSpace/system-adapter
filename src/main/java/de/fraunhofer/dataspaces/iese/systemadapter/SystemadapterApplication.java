@@ -1,7 +1,5 @@
 package de.fraunhofer.dataspaces.iese.systemadapter;
 
-
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.fraunhofer.dataspaces.iese.systemadapter.database.dummy.DummyDatabase;
 
-
 @SpringBootApplication
 public class SystemadapterApplication {
 	
@@ -19,8 +16,6 @@ public class SystemadapterApplication {
 	private DummyDatabase dummyDatabase;
 	
 	
-	
-
 	public static void main(String[] args) {
 		SpringApplication.run(SystemadapterApplication.class, args);
 	}
