@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import de.fraunhofer.dataspaces.iese.systemadapter.model.postgres.Payload;
 import de.fraunhofer.dataspaces.iese.systemadapter.repository.postgres.PayloadPostgresRepository;
 
+@Service
 public class PayloadPostgresService {
 	
 	@Autowired

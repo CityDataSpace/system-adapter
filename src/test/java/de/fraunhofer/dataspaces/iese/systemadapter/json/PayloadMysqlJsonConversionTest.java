@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
 import de.fraunhofer.dataspaces.iese.systemadapter.data.FraunhoferDataSpace;
-import de.fraunhofer.dataspaces.iese.systemadapter.database.dummy.DummyDatabase;
+import de.fraunhofer.dataspaces.iese.systemadapter.database.dummy.DummyDatabaseMysql;
 
 
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -24,7 +24,7 @@ import de.fraunhofer.dataspaces.iese.systemadapter.database.dummy.DummyDatabase;
 public class PayloadMysqlJsonConversionTest {
 	
 	@Autowired
-	private DummyDatabase dummyDatabase;
+	private DummyDatabaseMysql dummyDatabase;
 	
 	
 	@Test

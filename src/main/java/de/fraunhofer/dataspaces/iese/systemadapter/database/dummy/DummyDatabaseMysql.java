@@ -18,7 +18,7 @@ import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlServic
 
 @Component
 @EnableTransactionManagement
-public class DummyDatabase {
+public class DummyDatabaseMysql {
 
 	@Autowired
 	private UserMysqlService userMysqlService;
@@ -56,6 +56,7 @@ public class DummyDatabase {
 		payload.setData(new ObjectMapper().writeValueAsString(fraunhoferDataSpace));
 		
 		payloadMysqlService.save(payload);
+		
 	}
 	
 	
