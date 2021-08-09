@@ -18,13 +18,13 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@PropertySource({ "classpath:user.properties" })
+@PropertySource({ "classpath:database/database.properties", "classpath:database/mysql.properties" })
 @EnableJpaRepositories(
-		basePackages = "de.fraunhofer.dataspaces.iese.systemadapter.repository.user",
+		basePackages = "de.fraunhofer.dataspaces.iese.systemadapter.repository.mysql",
 		entityManagerFactoryRef = "userEntityManager",
 		transactionManagerRef = "userTransactionManager"
 )
-public class PersistanceUserConfiguration {
+public class PersistanceMysqlConfiguration {
 	
 	@Autowired
 	private Environment env;
@@ -37,7 +37,7 @@ public class PersistanceUserConfiguration {
 		
 		em.setDataSource(userDataSource());
 		em.setPackagesToScan(
-				new String[] { "de.fraunhofer.dataspaces.iese.systemadapter.model.user" });
+				new String[] { "de.fraunhofer.dataspaces.iese.systemadapter.model.mysql" });
 		
 		HibernateJpaVendorAdapter vendorAdapter 
 			= new HibernateJpaVendorAdapter();
