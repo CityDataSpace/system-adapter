@@ -3,11 +3,14 @@ package de.fraunhofer.dataspaces.iese.systemadapter.model.postgres;
 import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import de.fraunhofer.dataspaces.iese.systemadapter.encryption.RsaEncryption;
 
 @Entity(name="payloads")
 @Table(schema="systemadapter")
@@ -22,6 +25,7 @@ public class Payload {
 	private UUID headerId;
 	
 	@Column(name="data")
+	@Convert(converter = RsaEncryption.class)
 	private String data;
 
 	public Payload() {

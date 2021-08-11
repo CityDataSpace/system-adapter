@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import de.fraunhofer.dataspaces.iese.systemadapter.database.dummy.DummyDatabaseMysql;
 import de.fraunhofer.dataspaces.iese.systemadapter.database.dummy.DummyDatabasePostgres;
 
@@ -25,11 +26,12 @@ public class SystemadapterApplication {
 	}
 	
 	@PostConstruct
-	public void init() throws JsonProcessingException {
+	public void init() throws JsonProcessingException{
+		
 		dummyDatabaseMysql.fillInDatabaseUser();
 		
 		dummyDatabaseMysql.fillInDatabasePayload();
-		dummyDatabasePostgres.fillInDatabasePayload();
+		dummyDatabasePostgres.fillInDatabasePayload();	
 	}
 
 }
