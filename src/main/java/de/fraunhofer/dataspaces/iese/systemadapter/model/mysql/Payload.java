@@ -10,8 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import de.fraunhofer.dataspaces.iese.systemadapter.encryption.RsaEncryption;
 
-import de.fraunhofer.dataspaces.iese.systemadapter.encryption.AesEncryptionValues;
 
 @Entity(name="payloads")
 @Table(schema="systemadapter")
@@ -27,7 +27,7 @@ public class Payload {
 	
 	
 	@Column(name="data", length=10000)
-	@Convert(converter = AesEncryptionValues.class)
+	@Convert(converter = RsaEncryption.class)
 	private String data;
 
 	public Payload() {
