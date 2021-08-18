@@ -45,7 +45,9 @@ public class RsaEncryption implements AttributeConverter<String, String> {
 		encryptCipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
 		
 		KeyPairGenerator gen2 = KeyPairGenerator.getInstance("RSA");
-		gen2.initialize(1024);
+		
+		// at least 2048,  the best 3072 or 4096 - advised 4096
+		gen2.initialize(4096);
 		  
 		KeyPair keyPair = gen2.genKeyPair();
 		PrivateKey privatnyckel = keyPair.getPrivate();
