@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Container from '@material-ui/core/Container';
 import PageContainerArray from '../../container/PageContainerArray';
 
 const PageContainer = (props) => {
@@ -6,9 +8,9 @@ const PageContainer = (props) => {
     const pageContainer = PageContainerArray(props)
 
     return (
-        <div>
+        <Container minWidth={"lg"}>
             {pageContainer[props.onSelectedLink]}
-        </div>
+        </Container>
     );
 }
 
