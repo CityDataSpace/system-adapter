@@ -49,7 +49,7 @@ const Header = (props) => {
                 <BottomNavigationAction label="Home" icon={<HomeIcon />} />
                 <BottomNavigationAction label="About" icon={<InfoIcon />} />   
                 <BottomNavigationAction label="Documentation" icon={<FindInPageIcon />} /> 
-                <BottomNavigationAction label="Sign in" icon={<PersonIcon />} />
+                <BottomNavigationAction label="Sign In" icon={<PersonIcon />} />
                 <BottomNavigationAction label="Sign Up" icon={<PersonAddIcon />} />  
             
             </BottomNavigation>
