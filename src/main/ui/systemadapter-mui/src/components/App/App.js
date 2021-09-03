@@ -10,7 +10,7 @@ const App = () => {
 
   const [link, setLink] = useState(0)
 
-  
+  const [userLoggedIn, setUserLoggedIn] = useState(false)
 
   const clickedLinkHandler = (clickedLink) => {
 
@@ -18,10 +18,15 @@ const App = () => {
 
   }
 
+  const isUserLoggedInHandler = (data) => {
+    setUserLoggedIn(data)
+    setLink(0);
+  }
+
   return (
     <div>
-      <Header onClickedLink={clickedLinkHandler} />
-      <PageContainer onSelectedLink={link} />
+      <Header isUserLoggedIn={userLoggedIn} onClickedLink={clickedLinkHandler} />
+      <PageContainer isUserLoggedInToken={isUserLoggedInHandler} isUserLoggedIn={userLoggedIn} onSelectedLink={link} />
     </div>
   );
   

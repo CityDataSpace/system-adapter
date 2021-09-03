@@ -1,20 +1,20 @@
 import React from 'react';
 
-const SignIn = (props) => {
+const SignOut = (props) => {
 
     const onClickHandler = (event) => {
         event.preventDefault();
 
        
-        props.signInClick(true)
+        props.signInClick(false)
 
     }
 
     return (
         <div>
-            <button onClick={onClickHandler}>Sign In</button>
+            <button onClick={onClickHandler}>Sign Out</button>
         </div>
     );
 }
 
-export default SignIn;
+export default SignOut;

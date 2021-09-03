@@ -7,6 +7,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import PersonIcon from '@material-ui/icons/Person';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -45,12 +46,24 @@ const Header = (props) => {
                 showLabels
                 className={classes.root}
             >
-
-                <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-                <BottomNavigationAction label="About" icon={<InfoIcon />} />   
-                <BottomNavigationAction label="Documentation" icon={<FindInPageIcon />} /> 
-                <BottomNavigationAction label="Sign In" icon={<PersonIcon />} />
-                <BottomNavigationAction label="Sign Up" icon={<PersonAddIcon />} />  
+                {
+                    props.isUserLoggedIn 
+                    ?
+                    [
+                        <BottomNavigationAction key="loggedInHome" label="Home" icon={<HomeIcon />} />,
+                        <BottomNavigationAction key="loggedInAbout" label="About" icon={<InfoIcon />} />,
+                        <BottomNavigationAction key="loggedInSignOut" label="Sign Out" icon={<PersonOutlineIcon />} /> 
+                    ]
+                    :
+                    [
+                        <BottomNavigationAction key="loggedOutHome" label="Home" icon={<HomeIcon />} />,
+                        <BottomNavigationAction key="loggedOutAbout" label="About" icon={<InfoIcon />} /> ,  
+                        <BottomNavigationAction key="loggedOutDocumentation" label="Documentation" icon={<FindInPageIcon />} /> ,
+                        <BottomNavigationAction key="loggedOutSignIn" label="Sign In" icon={<PersonIcon />} />,
+                        <BottomNavigationAction key="loggedOutSignOut" label="Sign Up" icon={<PersonAddIcon />} /> 
+                    ]                   
+                }
+                
             
             </BottomNavigation>
         </div>
