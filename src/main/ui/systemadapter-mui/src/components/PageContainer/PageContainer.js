@@ -31,8 +31,6 @@ const PageContainer = (props) => {
         <SignUp />
     ];
 
-   
-
     return (
         <Container maxWidth={"lg"}>
             {pageContainer[props.onSelectedLink]}
