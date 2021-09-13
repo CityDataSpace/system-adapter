@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import de.fraunhofer.dataspaces.iese.systemadapter.form.requestbody.UserSignInFormRequestBody;
 import de.fraunhofer.dataspaces.iese.systemadapter.form.requestresponse.UserSignInFormRequestResponse;
+import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlService;
 
 @RestController
@@ -54,7 +55,14 @@ public class SignInController {
 			return ResponseEntity.ok(userSignInFormRequestResponse);
 	    }
 	    
+	    User user = userMysqlService.findByEmailAndPassword(request.getEmailAddress(), request.getPassword());
 	    
+	    if(user == null) {
+	    	userSignInFormRequestResponse.setViolations("Email Address and Password combination not correct. Try Again");
+	    	userSignInFormRequestResponse.setLoggedIn(false);
+			return ResponseEntity.ok(userSignInFormRequestResponse);
+	    }
+	        
 	    userSignInFormRequestResponse.setLoggedIn(true);
 		
 		return ResponseEntity.ok(userSignInFormRequestResponse);

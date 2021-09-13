@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
+import de.fraunhofer.dataspaces.iese.systemadapter.hashing.BCrypt;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
 import de.fraunhofer.dataspaces.iese.systemadapter.repository.mysql.UserMysqlRepository;
 
@@ -15,6 +17,9 @@ public class UserMysqlService {
 	@Autowired
 	private UserMysqlRepository userMysqlRepository;
 	
+	@Autowired
+	private BCrypt passwordEncoder;
+	
 	public List<User> findAll() {
 		return userMysqlRepository.findAll();
 	}
@@ -23,11 +28,30 @@ public class UserMysqlService {
 		return userMysqlRepository.findById(id);
 	}
 	
+	public User findByEmailAndPassword(String email, String password) {
+		
+		Optional<User> userOptional = Optional.of(userMysqlRepository.findByEmail(email));
+		
+		if(userOptional.isEmpty()) {
+			return null;
+		}
+		
+		User user = userOptional.get();
+		
+		if(!passwordEncoder.encoder().matches(password, user.getPassword())) {
+			return null;
+		}
+		
+		return user;
+	}
+	
 	public void save(User user) {
+		user.setPassword(passwordEncoder.encoder().encode(user.getPassword()));
 		userMysqlRepository.save(user);
 	}
 	
 	public User saveAndReturn(User user) {
+		user.setPassword(passwordEncoder.encoder().encode(user.getPassword()));
 		return userMysqlRepository.save(user);
 	}
 	

@@ -3,7 +3,7 @@ package de.fraunhofer.dataspaces.iese.systemadapter.database.dummy;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -26,17 +26,13 @@ public class DummyDatabaseMysql {
 	@Autowired
 	private PayloadMysqlService payloadMysqlService;
 	
-	@Autowired 
-	private PasswordEncoder passwordEncoder;
-	
-	
 	public void fillInDatabaseUser() {
 		User user = new User();
 		
 		user.setName("Arian");
 		user.setSurname("Ajdari");
 		user.setEmail("arianajdari94@gmail.com");
-		user.setPassword(passwordEncoder.encode("my_strong_password"));
+		user.setPassword("changeme");
 		
 		userMysqlService.save(user);
 	}
