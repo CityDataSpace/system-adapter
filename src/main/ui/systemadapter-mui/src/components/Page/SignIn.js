@@ -24,7 +24,8 @@ const SignIn = (props) => {
         event.preventDefault();
 
         axios.post("http://localhost:1400/user/sign/signin", new SignInRequestBody(emailAddress, password))
-             .then((response) => console.log(response));
+             .then((response) => console.log(response))
+             .catch((err) => console.log(err));
 
         //props.signInClick(true)
     }

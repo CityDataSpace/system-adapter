@@ -1,6 +1,14 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.form.user;
 
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
+import javax.validation.Validator;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,18 +24,41 @@ import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlServic
 public class SignInController {
 	
 	@Autowired
-	private UserMysqlService userMysqlService;
+	ValidatorFactory factory;
 	
 	@Autowired
-	private UserSignInFormRequestResponse userSignInFormRequestResponse;
+	Validator validator;
+	
+	@Autowired
+	private UserMysqlService userMysqlService;
+	
+	
+	public SignInController() {
+		factory = Validation.buildDefaultValidatorFactory();
+		validator = factory.getValidator();
+	}
 	
 	@PostMapping("/signin")
 	@CrossOrigin(origins = "http://localhost:3000/")
-	public UserSignInFormRequestResponse signInUser(@RequestBody UserSignInFormRequestBody request) {
+	public ResponseEntity<UserSignInFormRequestResponse> signInUser(@RequestBody UserSignInFormRequestBody request) {
 		
-		userSignInFormRequestResponse.setLoggedIn(true);
+		UserSignInFormRequestResponse userSignInFormRequestResponse = new UserSignInFormRequestResponse();
 		
-		return userSignInFormRequestResponse;
+	    Set<ConstraintViolation<UserSignInFormRequestBody>> violations = validator.validate(request);
+	    
+	    if(violations.size() > 0) {
+	    	for(ConstraintViolation<UserSignInFormRequestBody> cv : violations) {
+	    		userSignInFormRequestResponse.setViolations(cv.getMessage());	
+		    }
+	    	userSignInFormRequestResponse.setLoggedIn(false);
+			return ResponseEntity.ok(userSignInFormRequestResponse);
+	    }
+	    
+	    
+	    userSignInFormRequestResponse.setLoggedIn(true);
+		
+		return ResponseEntity.ok(userSignInFormRequestResponse);
+	        
 	}
 	
 }
