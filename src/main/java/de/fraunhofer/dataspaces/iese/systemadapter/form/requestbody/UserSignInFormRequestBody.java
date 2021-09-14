@@ -11,7 +11,7 @@ public class UserSignInFormRequestBody {
 	private String emailAddress;
 	
 	@NotBlank(message="Password should not be blank")
-	@Size(min=8, max=100, message="The length of password should be between 8 and 100 characters ")
+	@Size(min=8, max=100, message="The length of password should be between 8 and 100 characters")
 	private String password;
 	
 	public UserSignInFormRequestBody() {

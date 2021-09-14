@@ -28,6 +28,16 @@ public class UserMysqlService {
 		return userMysqlRepository.findById(id);
 	}
 	
+	public boolean isUserAlreadyRegistered(String email) {
+		Optional<User> userOptional = Optional.of(userMysqlRepository.findByEmail(email));
+		
+		if(userOptional.isPresent()) {
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public User findByEmailAndPassword(String email, String password) {
 		
 		Optional<User> userOptional = Optional.of(userMysqlRepository.findByEmail(email));

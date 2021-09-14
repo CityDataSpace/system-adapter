@@ -65,8 +65,7 @@ public class SignInController {
 	        
 	    userSignInFormRequestResponse.setLoggedIn(true);
 		
-		return ResponseEntity.ok(userSignInFormRequestResponse);
-	        
+		return ResponseEntity.ok(userSignInFormRequestResponse);        
 	}
 	
 }

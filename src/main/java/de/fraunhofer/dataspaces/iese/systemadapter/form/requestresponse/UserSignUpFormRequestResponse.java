@@ -1,19 +1,18 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.form.requestresponse;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserSignUpFormRequestResponse {
 	
 	private boolean isUserSuccessfullyCreated;
+	
+	private ArrayList<String> violations;
 
 	public UserSignUpFormRequestResponse() {
-		super();
-	}
-
-	public UserSignUpFormRequestResponse(boolean isUserSuccessfullyCreated) {
-		super();
-		this.isUserSuccessfullyCreated = isUserSuccessfullyCreated;
+		violations = new ArrayList<String>();
 	}
 
 	public boolean isUserSuccessfullyCreated() {
@@ -24,9 +23,18 @@ public class UserSignUpFormRequestResponse {
 		this.isUserSuccessfullyCreated = isUserSuccessfullyCreated;
 	}
 
+	public ArrayList<String> getViolations() {
+		return violations;
+	}
+	
+
+	public void setViolations(String violation) {
+		violations.add(violation);
+	}
+
 	@Override
 	public String toString() {
-		return "UserSignUpFormRequestResponse [isUserSuccessfullyCreated=" + isUserSuccessfullyCreated + "]";
+		return "UserSignUpFormRequestResponse [isUserSuccessfullyCreated=" + isUserSuccessfullyCreated + ", violations=" + violations + "]";
 	}
 	
 }
