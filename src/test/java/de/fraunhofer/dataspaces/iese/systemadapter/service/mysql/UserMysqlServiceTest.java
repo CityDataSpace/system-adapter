@@ -20,7 +20,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
 import de.fraunhofer.dataspaces.iese.systemadapter.configuration.BCryptConfig;
-import de.fraunhofer.dataspaces.iese.systemadapter.configuration.PersistanceMysqlConfiguration;
+import de.fraunhofer.dataspaces.iese.systemadapter.configuration.database.PersistanceMysqlConfiguration;
 
 
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)

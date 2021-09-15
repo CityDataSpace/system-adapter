@@ -1,4 +1,4 @@
-package de.fraunhofer.dataspaces.iese.systemadapter.configuration;
+package de.fraunhofer.dataspaces.iese.systemadapter.configuration.database;
 
 import java.util.HashMap;
 

@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Scope;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.fraunhofer.dataspaces.iese.systemadapter.configuration.PersistanceMysqlConfiguration;
+import de.fraunhofer.dataspaces.iese.systemadapter.configuration.database.PersistanceMysqlConfiguration;
 import de.fraunhofer.dataspaces.iese.systemadapter.data.FraunhoferDataSpace;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
 

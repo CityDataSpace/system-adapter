@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
+import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.ApplicationUserRole.*;
+
+import de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.UserAuthApplicationWrapper;
 import de.fraunhofer.dataspaces.iese.systemadapter.hashing.BCrypt;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
 import de.fraunhofer.dataspaces.iese.systemadapter.repository.mysql.UserMysqlRepository;
@@ -26,6 +28,31 @@ public class UserMysqlService {
 	
 	public Optional<User> findById(int id) {
 		return userMysqlRepository.findById(id);
+	}
+	
+	public Optional<UserAuthApplicationWrapper> findByUsername(String username) {
+		
+		Optional<User> user = this.findByEmail(username);
+		
+		if(user.isPresent()) {
+			User fetchedUser = user.get();
+			 
+			return Optional.of(new UserAuthApplicationWrapper(
+					STUDENT.getGrantedAuthorities(),
+					fetchedUser.getPassword(), 
+					fetchedUser.getEmail(), 
+					true, 
+					true, 
+					true, 
+					true
+					));
+		}
+		
+		return null;
+	}
+	
+	public Optional<User> findByEmail(String email) {
+		return Optional.of(userMysqlRepository.findByEmail(email));
 	}
 	
 	public boolean isUserAlreadyRegistered(String email) {
@@ -48,7 +75,7 @@ public class UserMysqlService {
 		
 		User user = userOptional.get();
 		
-		if(!passwordEncoder.encoder().matches(password, user.getPassword())) {
+		if(!passwordEncoder.getPasswordEncoder().matches(password, user.getPassword())) {
 			return null;
 		}
 		
@@ -56,12 +83,12 @@ public class UserMysqlService {
 	}
 	
 	public void save(User user) {
-		user.setPassword(passwordEncoder.encoder().encode(user.getPassword()));
+		user.setPassword(passwordEncoder.getPasswordEncoder().encode(user.getPassword()));
 		userMysqlRepository.save(user);
 	}
 	
 	public User saveAndReturn(User user) {
-		user.setPassword(passwordEncoder.encoder().encode(user.getPassword()));
+		user.setPassword(passwordEncoder.getPasswordEncoder().encode(user.getPassword()));
 		return userMysqlRepository.save(user);
 	}
 	
