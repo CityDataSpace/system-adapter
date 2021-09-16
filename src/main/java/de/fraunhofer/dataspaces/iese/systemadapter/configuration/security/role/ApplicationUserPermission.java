@@ -1,4 +1,4 @@
-package de.fraunhofer.dataspaces.iese.systemadapter.configuration.security;
+package de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role;
 
 public enum ApplicationUserPermission {
 	

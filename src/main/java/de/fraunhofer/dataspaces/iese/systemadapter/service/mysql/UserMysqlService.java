@@ -1,15 +1,18 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.service.mysql;
 
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.ApplicationUserRole.*;
-
-import de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.UserAuthApplicationWrapper;
+import de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.auth.UserAuthApplicationWrapper;
 import de.fraunhofer.dataspaces.iese.systemadapter.hashing.BCrypt;
+import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Role;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
 import de.fraunhofer.dataspaces.iese.systemadapter.repository.mysql.UserMysqlRepository;
 
@@ -18,6 +21,9 @@ public class UserMysqlService {
 	
 	@Autowired
 	private UserMysqlRepository userMysqlRepository;
+	
+	@Autowired
+	private RoleMysqlService roleMysqlService;
 	
 	@Autowired
 	private BCrypt passwordEncoder;
@@ -36,15 +42,24 @@ public class UserMysqlService {
 		
 		if(user.isPresent()) {
 			User fetchedUser = user.get();
-			 
+			
+			List<Role> roles = roleMysqlService.findByUserId(fetchedUser.getId());
+			
+			
+			Set<SimpleGrantedAuthority> permissions = new HashSet<>();
+			
+			for(Role role : roles) {
+				permissions.add(new SimpleGrantedAuthority("ROLE_" + role.getRole()));
+			}
+				 
 			return Optional.of(new UserAuthApplicationWrapper(
-					STUDENT.getGrantedAuthorities(),
+					permissions,
 					fetchedUser.getPassword(), 
 					fetchedUser.getEmail(), 
-					true, 
-					true, 
-					true, 
-					true
+					fetchedUser.isAccountNonExpired(), 
+					fetchedUser.isAccountNonLocked(), 
+					fetchedUser.isCredentialsNonExpired(), 
+					fetchedUser.isEnabled()
 					));
 		}
 		

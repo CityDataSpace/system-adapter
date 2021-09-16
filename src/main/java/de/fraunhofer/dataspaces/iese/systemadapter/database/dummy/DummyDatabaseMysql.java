@@ -1,5 +1,8 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.database.dummy;
 
+
+import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role.ApplicationUserRole.*;
+
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +15,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.fraunhofer.dataspaces.iese.systemadapter.data.FraunhoferDataSpace;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
+import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Role;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.PayloadMysqlService;
+import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.RoleMysqlService;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlService;
 
 @Component
@@ -24,17 +29,29 @@ public class DummyDatabaseMysql {
 	private UserMysqlService userMysqlService;
 	
 	@Autowired
+	private RoleMysqlService roleMysqlService;
+	
+	@Autowired
 	private PayloadMysqlService payloadMysqlService;
 	
 	public void fillInDatabaseUser() {
 		User user = new User();
+		Role role = new Role();
+	
 		
 		user.setName("Arian");
 		user.setSurname("Ajdari");
 		user.setEmail("arianajdari94@gmail.com");
 		user.setPassword("changeme");
-		
+		user.setAccountNonExpired(true);
+		user.setAccountNonLocked(true);
+		user.setCredentialsNonExpired(true);
+		user.setEnabled(true);
 		userMysqlService.save(user);
+		
+		role.setRole(STUDENT.name());
+		role.setUser(user);
+		roleMysqlService.save(role);
 	}
 	
 	

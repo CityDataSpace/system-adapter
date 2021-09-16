@@ -1,6 +1,8 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.configuration.security;
 
 
+import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role.ApplicationUserRole.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.auth.UserAuthServiceWrapper;
 
 
 @Configuration
@@ -33,26 +37,14 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 			//.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 			//.and()
 			.authorizeRequests()
+			.antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+			.antMatchers("/api/**").hasRole(STUDENT.name())
 			.anyRequest()
 			.authenticated()
 			.and() 
 			.formLogin();
 	}
 	
-	/*
-	@Override
-	@Bean
-	protected UserDetailsService userDetailsService() {
-		UserDetails arian = User.builder()
-				.username("arian")
-				.password(passwordEncoder.encode("password"))
-				.roles("USER")
-				.build();
-		
-		return new InMemoryUserDetailsManager(arian);
-	}
-	
-	*/
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

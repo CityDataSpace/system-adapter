@@ -1,12 +1,11 @@
-package de.fraunhofer.dataspaces.iese.systemadapter.configuration.security;
+package de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role;
 
 
+
+import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role.ApplicationUserPermission.*;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-
-
-import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.ApplicationUserPermission.*;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
