@@ -24,6 +24,7 @@ public class PayloadMysqlController {
 	private PayloadMysqlService payloadMysqlService;
 	
 	@GetMapping("/payloads/findAll")
+	
 	public List<Payload> findAll() {
 		return payloadMysqlService.findAll();
 	}

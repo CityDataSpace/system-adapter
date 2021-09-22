@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.auth.UserAuthServiceWrapper;
 
@@ -36,13 +38,14 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			//.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 			//.and()
+			.csrf().disable()
 			.authorizeRequests()
 			.antMatchers("/", "index", "/css/*", "/js/*").permitAll()
 			.antMatchers("/api/**").hasRole(STUDENT.name())
 			.anyRequest()
 			.authenticated()
 			.and() 
-			.formLogin();
+			.httpBasic();
 	}
 	
 	

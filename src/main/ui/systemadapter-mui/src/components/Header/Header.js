@@ -52,6 +52,7 @@ const Header = (props) => {
                     [
                         <BottomNavigationAction key="loggedInHome" label="Home" icon={<HomeIcon />} />,
                         <BottomNavigationAction key="loggedInAbout" label="About" icon={<InfoIcon />} />,
+                        <BottomNavigationAction key="loggedInPayload" label="Payload" icon={<InfoIcon />} />,
                         <BottomNavigationAction key="loggedInSignOut" label="Sign Out" icon={<PersonOutlineIcon />} /> 
                     ]
                     :

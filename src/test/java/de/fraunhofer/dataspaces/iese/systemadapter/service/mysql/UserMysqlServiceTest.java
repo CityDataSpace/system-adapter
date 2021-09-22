@@ -71,7 +71,7 @@ public class UserMysqlServiceTest {
 		assertEquals(NAME, newlyCreatedUser.getName());
 		assertEquals(SURNAME, newlyCreatedUser.getSurname());
 		assertEquals(EMAIL, newlyCreatedUser.getEmail());	
-		//assertThat(passwordEncoder.matches(PASSWORD, newlyCreatedUser.getPassword())).isTrue();
+		assertThat(passwordEncoder.matches(PASSWORD, newlyCreatedUser.getPassword())).isTrue();
 
 	}
 	

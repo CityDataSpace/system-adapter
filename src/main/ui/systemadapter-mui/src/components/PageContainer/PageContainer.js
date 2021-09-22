@@ -9,6 +9,7 @@ import Home from '../Page/Home';
 import SignIn from '../Page/SignIn';
 import SignUp from '../Page/SignUp';
 import SignOut from '../Page/SignOut';
+import Payload from '../Page/Payload';
 
 const PageContainer = (props) => {
 
@@ -22,6 +23,7 @@ const PageContainer = (props) => {
     const pageContainer =  isUserLoggedIn ? [
         <Home />,
         <About />,
+        <Payload signInClick={signInClickHandler} />,
         <SignOut signInClick={signInClickHandler} />
     ] : [
         <Home />,

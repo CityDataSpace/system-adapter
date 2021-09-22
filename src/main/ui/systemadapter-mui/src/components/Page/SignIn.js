@@ -14,6 +14,7 @@ import {
 
 import axios from 'axios';
 import SignInRequestBody from '../FormRequestBodyObjects/SignInRequestBody';
+import SignInAuthRequestBody from '../FormRequestBodyObjects/SignInAuthRequestBody';
 
 const SignIn = (props) => {
 
@@ -23,11 +24,17 @@ const SignIn = (props) => {
     const onClickHandler = (event) => {
         event.preventDefault();
 
-        axios.post("http://localhost:1400/user/sign/signin", new SignInRequestBody(emailAddress, password))
-             .then((response) => console.log(response))
-             .catch((err) => console.log(err));
+        axios.post("http://localhost:1400/user/sign/signin", 
+                    new SignInRequestBody(emailAddress, password), 
+                    (new SignInAuthRequestBody(emailAddress, password)).parse())
+        .then((response) => {
+            console.log(response)
+            props.signInClick(true)
+        })
+        .catch((err) => console.log(err));
+       
 
-        //props.signInClick(true)
+        
     }
 
     const emailAddressChangeHandler = (changedEmailAddress) => {
