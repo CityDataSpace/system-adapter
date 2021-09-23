@@ -1,6 +1,5 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.form.requestresponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

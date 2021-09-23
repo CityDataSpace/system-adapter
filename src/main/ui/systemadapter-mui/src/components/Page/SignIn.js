@@ -28,8 +28,8 @@ const SignIn = (props) => {
                     new SignInRequestBody(emailAddress, password), 
                     (new SignInAuthRequestBody(emailAddress, password)).parse())
         .then((response) => {
-            console.log(response)
             props.signInClick(true)
+            props.signedInUserId(response.data.loggedInUserId)
         })
         .catch((err) => console.log(err));
        

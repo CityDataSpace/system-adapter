@@ -10,8 +10,13 @@ import SignIn from '../Page/SignIn';
 import SignUp from '../Page/SignUp';
 import SignOut from '../Page/SignOut';
 import Payload from '../Page/Payload';
+import Profile from '../Page/Profile';
+import Register from '../Page/Register';
 
 const PageContainer = (props) => {
+
+
+    const [userId, setUserId] = useState(-1)
 
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(props.isUserLoggedIn)
 
@@ -20,16 +25,21 @@ const PageContainer = (props) => {
         props.isUserLoggedInToken(data)
     }
 
+    const signedInUserIdHandler = (signedInUserId) => {
+        console.log(signedInUserId)
+        setUserId(signedInUserId)
+    }
+
     const pageContainer =  isUserLoggedIn ? [
-        <Home />,
-        <About />,
-        <Payload signInClick={signInClickHandler} />,
-        <SignOut signInClick={signInClickHandler} />
+        <Profile userId={userId} />,
+        <Register userId={userId} />,
+        <Payload userId={userId} />,
+        <SignOut userId={userId} signInClick={signInClickHandler} />
     ] : [
         <Home />,
         <About />,
         <Documentation />,
-        <SignIn signInClick={signInClickHandler} />,
+        <SignIn signedInUserId={signedInUserIdHandler} signInClick={signInClickHandler} />,
         <SignUp />
     ];
 

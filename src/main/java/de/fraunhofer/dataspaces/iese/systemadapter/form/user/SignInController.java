@@ -57,8 +57,6 @@ public class SignInController {
 	    
 	    User user = userMysqlService.findByEmailAndPassword(request.getEmailAddress(), request.getPassword());
 	    
-	    
-	    
 	    if(user == null) {
 	    	userSignInFormRequestResponse.setViolations("Email Address and Password combination not correct. Try Again");
 	    	userSignInFormRequestResponse.setLoggedIn(false);
@@ -66,6 +64,7 @@ public class SignInController {
 	    }
 	        
 	    userSignInFormRequestResponse.setLoggedIn(true);
+	    userSignInFormRequestResponse.setLoggedInUserId(user.getId());
 		
 		return ResponseEntity.ok(userSignInFormRequestResponse);        
 	}

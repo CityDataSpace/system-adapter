@@ -8,7 +8,9 @@ import PersonIcon from '@material-ui/icons/Person';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import DescriptionIcon from '@material-ui/icons/Description';
+import ControlPointIcon from '@material-ui/icons/ControlPoint';
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -50,9 +52,9 @@ const Header = (props) => {
                     props.isUserLoggedIn 
                     ?
                     [
-                        <BottomNavigationAction key="loggedInHome" label="Home" icon={<HomeIcon />} />,
-                        <BottomNavigationAction key="loggedInAbout" label="About" icon={<InfoIcon />} />,
-                        <BottomNavigationAction key="loggedInPayload" label="Payload" icon={<InfoIcon />} />,
+                        <BottomNavigationAction key="loggedInProfile" label="Profile" icon={<AccountBoxIcon />} />,
+                        <BottomNavigationAction key="loggedInRegister" label="Register" icon={<ControlPointIcon />} />,
+                        <BottomNavigationAction key="loggedInPayload" label="Payload" icon={<DescriptionIcon />} />,
                         <BottomNavigationAction key="loggedInSignOut" label="Sign Out" icon={<PersonOutlineIcon />} /> 
                     ]
                     :
