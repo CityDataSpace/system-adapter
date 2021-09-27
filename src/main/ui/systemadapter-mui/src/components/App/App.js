@@ -13,13 +13,11 @@ const App = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(false)
 
   const clickedLinkHandler = (clickedLink) => {
-
     setLink(clickedLink);
-
   }
 
   const isUserLoggedInHandler = (data) => {
-    setUserLoggedIn(data)
+    setUserLoggedIn(data);
     setLink(0);
   }
 

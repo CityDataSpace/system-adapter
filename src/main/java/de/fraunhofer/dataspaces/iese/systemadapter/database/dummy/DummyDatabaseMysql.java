@@ -15,9 +15,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.fraunhofer.dataspaces.iese.systemadapter.data.FraunhoferDataSpace;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
+import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Registration;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Role;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.PayloadMysqlService;
+import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.RegistrationMysqlService;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.RoleMysqlService;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlService;
 
@@ -34,9 +36,13 @@ public class DummyDatabaseMysql {
 	@Autowired
 	private PayloadMysqlService payloadMysqlService;
 	
+	@Autowired
+	private RegistrationMysqlService registrationMysqlService;
+	
 	public void fillInDatabaseUser() {
 		User user = new User();
 		Role role = new Role();
+		Registration registration = new Registration();
 	
 		
 		user.setName("Arian");
@@ -52,6 +58,10 @@ public class DummyDatabaseMysql {
 		role.setRole(STUDENT.name());
 		role.setUser(user);
 		roleMysqlService.save(role);
+		
+		registration.setRegisteredDatabases(0);
+		registration.setUser(user);
+		registrationMysqlService.save(registration);
 	}
 	
 	
@@ -69,7 +79,6 @@ public class DummyDatabaseMysql {
 		payload.setData(new ObjectMapper().writeValueAsString(fraunhoferDataSpace));
 		
 		payloadMysqlService.save(payload);
-		
 	}
 	
 	

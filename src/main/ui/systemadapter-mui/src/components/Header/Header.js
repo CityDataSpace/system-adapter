@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import PersonIcon from '@material-ui/icons/Person';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
@@ -62,8 +61,7 @@ const Header = (props) => {
                         <BottomNavigationAction key="loggedOutHome" label="Home" icon={<HomeIcon />} />,
                         <BottomNavigationAction key="loggedOutAbout" label="About" icon={<InfoIcon />} /> ,  
                         <BottomNavigationAction key="loggedOutDocumentation" label="Documentation" icon={<FindInPageIcon />} /> ,
-                        <BottomNavigationAction key="loggedOutSignIn" label="Sign In" icon={<PersonIcon />} />,
-                        <BottomNavigationAction key="loggedOutSignOut" label="Sign Up" icon={<PersonAddIcon />} /> 
+                        <BottomNavigationAction key="loggedOutSignIn" label="Sign In" icon={<PersonIcon />} /> 
                     ]                   
                 }
                 

@@ -7,7 +7,6 @@ import About from '../Page/About';
 import Documentation from '../Page/Documentation';
 import Home from '../Page/Home';
 import SignIn from '../Page/SignIn';
-import SignUp from '../Page/SignUp';
 import SignOut from '../Page/SignOut';
 import Payload from '../Page/Payload';
 import Profile from '../Page/Profile';
@@ -39,8 +38,7 @@ const PageContainer = (props) => {
         <Home />,
         <About />,
         <Documentation />,
-        <SignIn signedInUserId={signedInUserIdHandler} signInClick={signInClickHandler} />,
-        <SignUp />
+        <SignIn signedInUserId={signedInUserIdHandler} signInClick={signInClickHandler} />
     ];
 
     return (

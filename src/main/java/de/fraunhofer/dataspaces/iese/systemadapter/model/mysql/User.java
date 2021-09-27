@@ -47,12 +47,20 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Role> roles;
 	
+	@OneToMany(mappedBy="user")
+	private List<Registration> registrations;
+	
+	
 	public User() {
 		
 	}
 	
+	
+
 	public User(int id, String name, String surname, String email, String password, boolean isAccountNonExpired,
-			boolean isAccountNonLocked, boolean isCredentialsNonExpired, boolean isEnabled, List<Role> roles) {
+			boolean isAccountNonLocked, boolean isCredentialsNonExpired, boolean isEnabled, List<Role> roles, List<Registration> registrations
+			) {
+		
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
@@ -63,6 +71,7 @@ public class User {
 		this.isCredentialsNonExpired = isCredentialsNonExpired;
 		this.isEnabled = isEnabled;
 		this.roles = roles;
+		this.registrations = registrations;
 	}
 
 	public int getId() {
@@ -145,12 +154,20 @@ public class User {
 		this.roles = roles;
 	}
 
+	public List<Registration> getRegistrations() {
+		return registrations;
+	}
+
+	public void setRegistrations(List<Registration> registrations) {
+		this.registrations = registrations;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", password="
 				+ password + ", isAccountNonExpired=" + isAccountNonExpired + ", isAccountNonLocked="
 				+ isAccountNonLocked + ", isCredentialsNonExpired=" + isCredentialsNonExpired + ", isEnabled="
-				+ isEnabled + ", roles=" + roles + "]";
+				+ isEnabled + ", roles=" + roles + ", registrations=" + registrations + "]";
 	}
 	
 }
