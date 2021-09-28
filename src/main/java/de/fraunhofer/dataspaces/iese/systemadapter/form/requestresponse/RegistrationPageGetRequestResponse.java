@@ -6,16 +6,16 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RegistrationPageRequestResponse {
+public class RegistrationPageGetRequestResponse {
 	
 	private List<Integer> registrations;
 
-	public RegistrationPageRequestResponse() {
+	public RegistrationPageGetRequestResponse() {
 		registrations = new ArrayList<>();
 		
 	}
 
-	public RegistrationPageRequestResponse(List<Integer> registrations) {
+	public RegistrationPageGetRequestResponse(List<Integer> registrations) {
 		this.registrations = registrations;
 	}
 
