@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <div>
-      <Header isUserLoggedIn={userLoggedIn} onClickedLink={clickedLinkHandler} />
+      <Header linkValue={link} isUserLoggedIn={userLoggedIn} onClickedLink={clickedLinkHandler} />
       <PageContainer isUserLoggedInToken={isUserLoggedInHandler} isUserLoggedIn={userLoggedIn} onSelectedLink={link} />
     </div>
   );

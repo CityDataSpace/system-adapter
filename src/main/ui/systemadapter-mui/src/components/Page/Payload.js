@@ -108,8 +108,6 @@ const Payload = (props) => {
             )
         })               
     }
-  
-
     return (
         <Grid
             container

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -29,20 +29,14 @@ const useStyles = makeStyles({
 const Header = (props) => {
     const classes = useStyles()
 
-    const [value, setValue] = useState('')
-
     const onChangeHandler = (event, newValue) => {
-        setValue((previousValue) => {
-            return newValue;
-        });
-
         props.onClickedLink(newValue);
     }
 
     return (
         <div>
             <BottomNavigation
-                value={value}
+                value={props.linkValue}
                 onChange={onChangeHandler}
                 showLabels
                 className={classes.root}
