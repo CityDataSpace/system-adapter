@@ -14,27 +14,29 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
-import de.fraunhofer.dataspaces.iese.systemadapter.configuration.BCryptConfig;
-import de.fraunhofer.dataspaces.iese.systemadapter.configuration.PersistanceMysqlConfiguration;
+import de.fraunhofer.dataspaces.iese.systemadapter.configuration.database.PersistanceMysqlConfiguration;
+import de.fraunhofer.dataspaces.iese.systemadapter.hashing.BCrypt;
 
 
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 @SpringBootTest(classes = {PersistanceMysqlConfiguration.class, UserMysqlService.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestMethodOrder(value = MethodName.class)
-@Import(BCryptConfig.class)
+@Import(BCrypt.class)
+@ContextConfiguration(classes= {RoleMysqlService.class})
 public class UserMysqlServiceTest {
 	
 	@Autowired
 	private UserMysqlService userMysqlService;
 	
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private PasswordEncoder passwordEncoder;	
 	
 	private User user;
 	

@@ -28,7 +28,7 @@ public class DummyDatabasePostgres {
 		
 		fraunhoferDataSpace
 			.setName("My Policy")
-			.setDuration("2 days")
+			.setDuration("3 days")
 			.setType("Restriction");
 		
 		payload.setHeaderId(UUID.randomUUID());
@@ -44,8 +44,8 @@ public class DummyDatabasePostgres {
 		
 		fraunhoferDataSpace
 			.setName("My Policy")
-			.setDuration("2 days")
-			.setType("Restriction");
+			.setDuration("3 days")
+			.setType("Allowance");
 		
 		payload.setHeaderId(UUID.randomUUID());
 		payload.setData(new ObjectMapper().writeValueAsString(fraunhoferDataSpace));
