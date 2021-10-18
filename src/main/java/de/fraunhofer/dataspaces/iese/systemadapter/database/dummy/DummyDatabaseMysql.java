@@ -2,6 +2,7 @@ package de.fraunhofer.dataspaces.iese.systemadapter.database.dummy;
 
 
 import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role.ApplicationUserRole.*;
+import static de.fraunhofer.dataspaces.iese.systemadapter.data.database.type.DatabaseType.*;
 
 import java.util.UUID;
 
@@ -59,7 +60,7 @@ public class DummyDatabaseMysql {
 		role.setUser(user);
 		roleMysqlService.save(role);
 		
-		registration.setRegisteredDatabases(0);
+		registration.setRegisteredDatabases(MYSQL.getDatabaseType());
 		registration.setUser(user);
 		registrationMysqlService.save(registration);
 	}
