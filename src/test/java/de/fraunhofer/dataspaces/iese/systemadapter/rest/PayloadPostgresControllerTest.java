@@ -32,17 +32,17 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.fraunhofer.dataspaces.iese.systemadapter.configuration.database.PersistanceMysqlConfiguration;
+import de.fraunhofer.dataspaces.iese.systemadapter.configuration.database.PersistancePostgresConfiguration;
 import de.fraunhofer.dataspaces.iese.systemadapter.data.FraunhoferDataSpace;
 import de.fraunhofer.dataspaces.iese.systemadapter.hashing.BCrypt;
-import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
-import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.PayloadMysqlService;
+import de.fraunhofer.dataspaces.iese.systemadapter.model.postgres.Payload;
+import de.fraunhofer.dataspaces.iese.systemadapter.service.postgres.PayloadPostgresService;
 
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 @SpringBootTest(classes = {
-		PersistanceMysqlConfiguration.class, 
-		PayloadMysqlService.class, 
-		PayloadMysqlController.class, 
+		PersistancePostgresConfiguration.class, 
+		PayloadPostgresService.class, 
+		PayloadPostgresController.class, 
 		}
 )
 @AutoConfigureMockMvc
@@ -50,10 +50,10 @@ import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.PayloadMysqlSer
 @TestMethodOrder(value = MethodName.class)
 @EnableWebMvc
 @Import(BCrypt.class)
-public class PayloadMysqlControllerTest {
+public class PayloadPostgresControllerTest {
 	
 	@Autowired
-	private PayloadMysqlService payloadMysqlService;
+	private PayloadPostgresService payloadPostgresService;
 	
 	@Autowired
 	private MockMvc mockMvc;
@@ -62,7 +62,7 @@ public class PayloadMysqlControllerTest {
 	private PasswordEncoder passwordEncoder;
 	
 	@InjectMocks
-	private PayloadMysqlController payloadMysqlController;
+	private PayloadPostgresController payloadPostgresController;
 	
 	private Payload payload;
 	
@@ -79,12 +79,12 @@ public class PayloadMysqlControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		mockMvc = MockMvcBuilders
-				.standaloneSetup(payloadMysqlController)
+				.standaloneSetup(payloadPostgresController)
 				.apply(springSecurity())
 				.build();
 	}
 	
-	public PayloadMysqlControllerTest() throws JsonProcessingException {
+	public PayloadPostgresControllerTest() throws JsonProcessingException {
 		this.DATA = new ObjectMapper()
 				.writeValueAsString(new FraunhoferDataSpace()
 						.setName("Policy")
@@ -99,48 +99,48 @@ public class PayloadMysqlControllerTest {
 		payload.setHeaderId(HEADER_ID);
 		payload.setData(DATA);
 		
-		payloadMysqlService.save(payload);
+		payloadPostgresService.save(payload);
 	}
 	
 	@Test
 	public void A_checkMysqlPayloadsFindAllStudent() throws Exception {
 		mockMvc.perform(
-				MockMvcRequestBuilders.get("/api/mysql/payloads/findAll").with(setUpMockUserStudent())
+				MockMvcRequestBuilders.get("/api/postgres/payloads/findAll").with(setUpMockUserStudent())
 		).andExpect(MockMvcResultMatchers.status().isOk());	
 	}
 	
 	@Test
 	public void B_checkMysqlPayloadsFindAllAdmin() throws Exception {
 		mockMvc.perform(
-				MockMvcRequestBuilders.get("/api/mysql/payloads/findAll").with(setUpMockUserAdmin())
+				MockMvcRequestBuilders.get("/api/postgres/payloads/findAll").with(setUpMockUserAdmin())
 		).andExpect(MockMvcResultMatchers.status().isOk());	
 	}
 	
 	@Test
 	public void C_checkMysqlPayloadsFindAllAdminTrainee() throws Exception {
 		mockMvc.perform(
-				MockMvcRequestBuilders.get("/api/mysql/payloads/findAll").with(setUpMockUserAdminTrainee())
+				MockMvcRequestBuilders.get("/api/postgres/payloads/findAll").with(setUpMockUserAdminTrainee())
 		).andExpect(MockMvcResultMatchers.status().isOk());	
 	}
 	
 	@Test
 	public void D_checkMysqlPayloadsFindStudent() throws Exception {
 		mockMvc.perform(
-				MockMvcRequestBuilders.get("/api/mysql/payloads/" + payload.getId() + "").with(setUpMockUserStudent())
+				MockMvcRequestBuilders.get("/api/postgres/payloads/" + payload.getId() + "").with(setUpMockUserStudent())
 		).andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
 	public void E_checkMysqlPayloadsFindAdmin() throws Exception {
 		mockMvc.perform(
-				MockMvcRequestBuilders.get("/api/mysql/payloads/" + payload.getId() + "").with(setUpMockUserAdmin())
+				MockMvcRequestBuilders.get("/api/postgres/payloads/" + payload.getId() + "").with(setUpMockUserAdmin())
 		).andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
 	public void F_checkMysqlPayloadsFindAdminTrainee() throws Exception {
 		mockMvc.perform(
-				MockMvcRequestBuilders.get("/api/mysql/payloads/" + payload.getId() + "").with(setUpMockUserAdminTrainee())
+				MockMvcRequestBuilders.get("/api/postgres/payloads/" + payload.getId() + "").with(setUpMockUserAdminTrainee())
 		).andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
