@@ -11,21 +11,23 @@ import Collapse from '@mui/material/Collapse';
 import ListItemButton from '@mui/material/ListItemButton';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import DescriptionIcon from '@material-ui/icons/Description';
+import UserModelPageDocumentation from '../Model/UserModelPageDocumentation';
+import PayloadModelPageDocumentation from '../Model/PayloadModelPageDocumentation';
+import RegistrationModelPageDocumentation from '../Model/RegistrationModelPageDocumentation';
+import RoleModelPageDocumentation from '../Model/RoleModelPageDocumentation';
 
-import AuthenticationPageDocumentation from '../Security/AuthenticationPageDocumentation';
-import AuthorizationPageDocumentation from '../Security/AuthorizationPageDocumentation';
-import EncryptionPageDocumentation from '../Security/EncryptionPageDocumentation';
 
-const SecurityLinksContainer = (props) => {
+const ModelLinksContainer = (props) => {
 
     const [open, setOpen] = useState(false);
 
-    const name = "Security"
+    const name = "Models"
 
     const content = {
-        Authentication: <AuthenticationPageDocumentation />,
-        Authorization: <AuthorizationPageDocumentation />,
-        Encryption: <EncryptionPageDocumentation />      
+        User : <UserModelPageDocumentation />,
+        Payload : <PayloadModelPageDocumentation />,
+        Registration : <RegistrationModelPageDocumentation />,
+        Role : <RoleModelPageDocumentation />   
       }
 
     const handleClick = () => {
@@ -42,14 +44,13 @@ const SecurityLinksContainer = (props) => {
             <ListItemText primary={name} />{open ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        {['Authentication', 'Authorization', 'Encryption'].map((link) => (
+        {['User', 'Payload', 'Registration', 'Role'].map((link) => (
           <ListItem onClick={onClickHandler} button key={link}><ListItemIcon><DescriptionIcon /></ListItemIcon><ListItemText primary={link} /></ListItem>
         ))}
       </Collapse>
     </div>
-
     );
 
 }
 
-export default SecurityLinksContainer;
+export default ModelLinksContainer;
