@@ -23,24 +23,24 @@ const SecurityLinksContainer = (props) => {
     const name = "Security"
 
     const content = {
-        Authentication: <AuthenticationPageDocumentation />,
-        Authorization: <AuthorizationPageDocumentation />,
-        Encryption: <EncryptionPageDocumentation />      
-      }
+      Authentication: <AuthenticationPageDocumentation />,
+      Authorization: <AuthorizationPageDocumentation />,
+      Encryption: <EncryptionPageDocumentation />      
+    }
 
     const handleClick = () => {
       setOpen(!open);
     };
 
     const onClickHandler = (event) => {
-        props.onClickValue(content[event.target.innerText])
+      props.onClickValue(content[event.target.innerText])
     }
 
     return (<div>
-        <ListItemButton onClick={handleClick}>
-            <ListItemIcon><InboxIcon /></ListItemIcon>
-            <ListItemText primary={name} />{open ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
+      <ListItemButton onClick={handleClick}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary={name} />{open ? <ExpandLess /> : <ExpandMore />}
+      </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         {['Authentication', 'Authorization', 'Encryption'].map((link) => (
           <ListItem onClick={onClickHandler} button key={link}><ListItemIcon><DescriptionIcon /></ListItemIcon><ListItemText primary={link} /></ListItem>

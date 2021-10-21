@@ -11,19 +11,19 @@ import DesignPageDocumentation from '../Design/DesignPageDocumentation';
 const OrdinaryLinksContainer = (props) => {
 
     const content = {
-        Design: <DesignPageDocumentation />
+      Design: <DesignPageDocumentation />
     }
 
     const onClickHandler = (event) => {
-        props.onClickValue(content[event.target.innerText])
+      props.onClickValue(content[event.target.innerText])
     }
 
     return (['Design'].map((link) => (
-        <ListItem 
-                onClick={onClickHandler} 
-                button 
-                key={link}>
-            <ListItemIcon><DescriptionIcon /></ListItemIcon><ListItemText primary={link} /></ListItem>
+      <ListItem 
+        onClick={onClickHandler} 
+        button 
+        key={link}>
+      <ListItemIcon><DescriptionIcon /></ListItemIcon><ListItemText primary={link} /></ListItem>
     )));
 }
 
