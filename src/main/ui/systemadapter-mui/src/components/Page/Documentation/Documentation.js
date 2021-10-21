@@ -7,13 +7,19 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Collapse from '@mui/material/Collapse';
+import ListItemButton from '@mui/material/ListItemButton';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
 
 import DescriptionIcon from '@material-ui/icons/Description';
 
-import AuthenticationPageDocumentation from './Documentation/AuthenticationPageDocumentation';
-import AuthorizationPageDocumentation from './Documentation/AuthorizationPageDocumentation';
-import DesignPageDocumentation from './Documentation/DesignPageDocumentation';
-import EncryptionPageDocumentation from './Documentation/EncryptionPageDocumentation';
+import DesignPageDocumentation from './Design/DesignPageDocumentation';
+
+import AuthenticationPageDocumentation from './Security/AuthenticationPageDocumentation';
+import AuthorizationPageDocumentation from './Security/AuthorizationPageDocumentation';
+import EncryptionPageDocumentation from './Security/EncryptionPageDocumentation';
     
     const drawerWidth = 240;
     
@@ -45,8 +51,6 @@ import EncryptionPageDocumentation from './Documentation/EncryptionPageDocumenta
 
       const [text, setText] = useState("Design")
 
-
-
       const content = {
         Design: <DesignPageDocumentation />,
         Authentication: <AuthenticationPageDocumentation />,
@@ -60,6 +64,27 @@ import EncryptionPageDocumentation from './Documentation/EncryptionPageDocumenta
           return event.target.innerText;
         })
       }
+
+      const normalLinks = (text) => {return <ListItem onClick={onClickHandler} button key={text}><ListItemIcon><DescriptionIcon /></ListItemIcon><ListItemText primary={text} /></ListItem>}
+
+      const securityLinks = (text) => {return <div><ListItemButton onClick={handleClick}>
+      <ListItemIcon>
+        <InboxIcon />
+      </ListItemIcon>
+      <ListItemText primary={text} />
+      {open ? <ExpandLess /> : <ExpandMore />}
+    </ListItemButton>
+    <Collapse in={open} timeout="auto" unmountOnExit>
+      {['Authentication', 'Authorization', 'Encryption'].map((text, index) => (
+        <ListItem onClick={onClickHandler} button key={text}><ListItemIcon><DescriptionIcon /></ListItemIcon><ListItemText primary={text} /></ListItem>
+      ))}
+    </Collapse></div>}
+
+      const [open, setOpen] = useState(true);
+
+      const handleClick = () => {
+        setOpen(!open);
+      };
     
       return (
         <div className={classes.root}>
@@ -73,11 +98,13 @@ import EncryptionPageDocumentation from './Documentation/EncryptionPageDocumenta
             <Toolbar />
             <div className={classes.drawerContainer}>
               <List>
-                {['Design', 'Authentication', 'Authorization', 'Encryption'].map((text, index) => (
-                  <ListItem onClick={onClickHandler} button key={text}>
-                    <ListItemIcon><DescriptionIcon /></ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
+                {['Design', 'Security'].map((text, index) => (
+
+                  
+                    text === 'Security' ? securityLinks(text) : normalLinks(text)
+                  
+
+                  
                 ))}
               </List>
             </div>

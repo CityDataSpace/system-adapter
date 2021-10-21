@@ -3,13 +3,17 @@ import React from 'react';
 import { useState } from 'react';
 
 import Container from '@material-ui/core/Container';
-import About from '../Page/About';
-import Documentation from '../Page/Documentation';
+
 import Home from '../Page/Home';
-import SignIn from '../Page/SignIn';
-import SignOut from '../Page/SignOut';
+import About from '../Page/About';
+
+import Documentation from '../Page/Documentation/Documentation';
+
+import SignIn from '../Page/User/SignIn';
+import SignOut from '../Page/User/SignOut';
+import Profile from '../Page/User/Profile';
+
 import Payload from '../Page/Payload';
-import Profile from '../Page/Profile';
 import Register from '../Page/Register';
 
 const PageContainer = (props) => {

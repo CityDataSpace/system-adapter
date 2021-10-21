@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 
 import axios from 'axios';
-import SignUpRequestBody from '../FormRequestBodyObjects/SignUpRequestBody';
+import SignUpRequestBody from '../../FormRequestBodyObjects/SignUpRequestBody';
 
 const SignUp = () => {
 
