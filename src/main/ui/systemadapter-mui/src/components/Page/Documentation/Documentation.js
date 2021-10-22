@@ -5,12 +5,11 @@ import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 
-
+import ModelLinksContainer from './Container/ModelLinksContainer';
+import DesignPageDocumentation from './Design/DesignPageDocumentation';
 import SecurityLinksContainer from './Container/SecurityLinksContainer';
 import OrdinaryLinksContainer from './Container/OrdinaryLinksContainer';
-
-import DesignPageDocumentation from './Design/DesignPageDocumentation';
-import ModelLinksContainer from './Container/ModelLinksContainer';
+import ConverterLinksContainer from './Container/ConverterLinksContainer';
 
   const drawerWidth = 240;
   
@@ -55,11 +54,12 @@ import ModelLinksContainer from './Container/ModelLinksContainer';
           <Toolbar />
           <div className={classes.drawerContainer}>
             <List>
-              {['Ordinary', 'Models', 'Security'].map((clickedOption) => (
+              {['Ordinary', 'Models', 'Security', 'Converters'].map((clickedOption) => (
                 (() => {
                   if (clickedOption === 'Security')  return <SecurityLinksContainer key="securityLinksContainer" onClickValue={securityLinksContainerOnClickHandler} />; 
                   else if(clickedOption === 'Models') return <ModelLinksContainer key="modelLinksContainer" onClickValue={securityLinksContainerOnClickHandler} />;
-                  else if(clickedOption === 'Ordinary') return <OrdinaryLinksContainer  key="ordinaryLinksContainer" onClickValue={securityLinksContainerOnClickHandler} />;   
+                  else if(clickedOption === 'Ordinary') return <OrdinaryLinksContainer  key="ordinaryLinksContainer" onClickValue={securityLinksContainerOnClickHandler} />;
+                  else if(clickedOption === 'Converters') return <ConverterLinksContainer  key="converterLinksContainer" onClickValue={securityLinksContainerOnClickHandler} />;    
                 })()               
               ))}
             </List>

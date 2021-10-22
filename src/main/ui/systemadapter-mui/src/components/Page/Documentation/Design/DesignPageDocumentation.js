@@ -2,9 +2,9 @@ import React from "react";
 
 import Typography from '@material-ui/core/Typography';
 
-import highest_abstraction_level from './../../../../resources/images/highest_abstraction_level.png';
-import system_adapter            from './../../../../resources/images/system_adapter.png';
-import main_aspects              from './../../../../resources/images/main_aspects.png'
+import highest_abstraction_level from './../../../../resources/images/design/highest_abstraction_level.png';
+import system_adapter            from './../../../../resources/images/design/system_adapter.png';
+import main_aspects              from './../../../../resources/images/design/main_aspects.png'
 
 const DesignPageDocumentation = () => {
 

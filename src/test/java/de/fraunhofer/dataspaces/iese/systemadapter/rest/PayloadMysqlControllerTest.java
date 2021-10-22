@@ -42,7 +42,7 @@ import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.PayloadMysqlSer
 @SpringBootTest(classes = {
 		PersistanceMysqlConfiguration.class, 
 		PayloadMysqlService.class, 
-		PayloadMysqlController.class, 
+		PayloadMysqlController.class
 		}
 )
 @AutoConfigureMockMvc
@@ -70,8 +70,8 @@ public class PayloadMysqlControllerTest {
 	
 	private final String DATA;
 	
-	private final String USERNAME     = "arianajdari94@gmail.com";
-	private final String PASSWORD     = "changeme";
+	private final String USERNAME = "arianajdari94@gmail.com";
+	private final String PASSWORD = "changeme";
 	private final String STUDENT_ROLE = STUDENT.name();
 	private final String ADMIN_ROLE = ADMIN.name();
 	private final String ADMINTRAINEE_ROLE = ADMINTRAINEE.name();
@@ -85,6 +85,7 @@ public class PayloadMysqlControllerTest {
 	}
 	
 	public PayloadMysqlControllerTest() throws JsonProcessingException {
+	
 		this.DATA = new ObjectMapper()
 				.writeValueAsString(new FraunhoferDataSpace()
 						.setName("Policy")

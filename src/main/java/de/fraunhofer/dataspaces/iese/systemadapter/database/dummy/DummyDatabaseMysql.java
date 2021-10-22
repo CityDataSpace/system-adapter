@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.fraunhofer.dataspaces.iese.systemadapter.data.DummyUserCredentials;
 import de.fraunhofer.dataspaces.iese.systemadapter.data.FraunhoferDataSpace;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Registration;
@@ -27,7 +28,10 @@ import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlServic
 @Component
 @EnableTransactionManagement
 public class DummyDatabaseMysql {
-
+	
+	@Autowired
+	DummyUserCredentials dummyUserCredentials;
+	
 	@Autowired
 	private UserMysqlService userMysqlService;
 	
@@ -46,10 +50,10 @@ public class DummyDatabaseMysql {
 		Registration registration = new Registration();
 	
 		
-		user.setName("Arian");
-		user.setSurname("Ajdari");
-		user.setEmail("arianajdari94@gmail.com");
-		user.setPassword("changeme");
+		user.setName(dummyUserCredentials.getName());
+		user.setSurname(dummyUserCredentials.getSurname());
+		user.setEmail(dummyUserCredentials.getUsername());
+		user.setPassword(dummyUserCredentials.getPassword());
 		user.setAccountNonExpired(true);
 		user.setAccountNonLocked(true);
 		user.setCredentialsNonExpired(true);

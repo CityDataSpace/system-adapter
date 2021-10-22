@@ -2,7 +2,7 @@ import React from "react";
 
 import Typography from '@material-ui/core/Typography';
 
-import user_model from './../../../../resources/images/user_model.png'
+import user_model from './../../../../resources/images/models/user_model.png'
 
 const UserModelPageDocumentation = () => {
   return (
