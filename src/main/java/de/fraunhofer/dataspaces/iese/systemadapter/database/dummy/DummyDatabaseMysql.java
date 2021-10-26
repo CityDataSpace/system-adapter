@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.fraunhofer.dataspaces.iese.systemadapter.data.DummyUserCredentials;
 import de.fraunhofer.dataspaces.iese.systemadapter.data.FraunhoferDataSpace;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Registration;

@@ -1,4 +1,4 @@
-package de.fraunhofer.dataspaces.iese.systemadapter.data;
+package de.fraunhofer.dataspaces.iese.systemadapter.database.dummy;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
