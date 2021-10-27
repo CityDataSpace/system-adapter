@@ -6,7 +6,7 @@ const AesEncryptionPageDocumentation = () => {
   return (
     <div>
       <Typography paragraph>
-      AesEncryptionPageDocumentation
+        AesEncryptionPageDocumentation
       </Typography>
     </div>
   )

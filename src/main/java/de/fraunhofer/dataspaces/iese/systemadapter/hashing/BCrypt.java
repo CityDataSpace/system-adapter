@@ -7,6 +7,10 @@ import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * This configuration class prepares an instance of BCrypt PasswordEncoder 
+ * to be used throughout the application
+ */
 @Configuration
 public class BCrypt {
 

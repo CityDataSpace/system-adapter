@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.PayloadMysqlService;
 
+/**
+ * This class is a controller exposing routes to access Mysql Database
+ */
 @RestController
 @RequestMapping("/api/mysql")
 public class PayloadMysqlController {

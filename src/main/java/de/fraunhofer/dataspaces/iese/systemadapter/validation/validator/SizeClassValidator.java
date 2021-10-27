@@ -7,7 +7,6 @@ import de.fraunhofer.dataspaces.iese.systemadapter.validation.annotations.Size;
 
 /**
  * This class checks whether a String's length is between specified min and max length.
- * @author ajdari
  */
 public class SizeClassValidator implements ConstraintValidator<Size, String> {
 	
