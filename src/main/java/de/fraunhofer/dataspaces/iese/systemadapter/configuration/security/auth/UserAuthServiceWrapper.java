@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlService;
 
+/**
+ * This enum contains user auth service wrapper
+ */
 @Service
 public class UserAuthServiceWrapper implements UserDetailsService {
 	

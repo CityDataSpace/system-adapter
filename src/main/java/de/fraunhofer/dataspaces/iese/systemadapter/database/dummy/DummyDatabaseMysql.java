@@ -1,6 +1,5 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.database.dummy;
 
-
 import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role.ApplicationUserRole.*;
 import static de.fraunhofer.dataspaces.iese.systemadapter.data.database.type.DatabaseType.*;
 
@@ -24,6 +23,9 @@ import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.RegistrationMys
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.RoleMysqlService;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlService;
 
+/**
+ * This class contains entries for Mysql Database that are used throughout application. They do not represent real entries.
+ */
 @Component
 @EnableTransactionManagement
 public class DummyDatabaseMysql {

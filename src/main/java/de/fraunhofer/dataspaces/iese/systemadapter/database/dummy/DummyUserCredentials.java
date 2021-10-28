@@ -1,12 +1,14 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.database.dummy;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+/**
+ * This class contains entries for Mysql Database that correspond to dummy user.
+ */
 @Configuration
 @PropertySource("classpath:credentials/dummy_credentials.properties")
 public class DummyUserCredentials {

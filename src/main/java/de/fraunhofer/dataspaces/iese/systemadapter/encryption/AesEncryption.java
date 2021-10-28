@@ -9,6 +9,9 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.spec.SecretKeySpec;
 import javax.persistence.AttributeConverter;
 
+/**
+ * This class implements AesEncryption by implementing methods from AttributeConverter interface
+ */
 public class AesEncryption implements AttributeConverter<String, String> {
 	
 	private static final String AES = "AES";

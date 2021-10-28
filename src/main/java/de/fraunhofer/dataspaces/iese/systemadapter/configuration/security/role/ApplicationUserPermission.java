@@ -1,5 +1,8 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role;
 
+/**
+ * This enum contains user permissions
+ */
 public enum ApplicationUserPermission {
 	
 	STUDENT_READ("student:read"),

@@ -6,11 +6,11 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * This class implements User Details interface in order to provide user information to Java Spring Security DAO
+ */
 public class UserAuthApplicationWrapper implements UserDetails {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private final Set<? extends GrantedAuthority> grantedAuthorities;

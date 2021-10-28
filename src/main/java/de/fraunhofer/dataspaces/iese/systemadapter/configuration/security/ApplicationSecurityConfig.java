@@ -1,6 +1,5 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.configuration.security;
 
-
 import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role.ApplicationUserRole.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.auth.UserAuthServiceWrapper;
 
-
+/**
+ * This class serves as a configuration class for Java Spring Security
+ */
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -23,7 +24,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	private final PasswordEncoder passwordEncoder;
 	
 	private final UserAuthServiceWrapper userAuthServiceWrapper;
-	
 	
 	@Autowired
 	public ApplicationSecurityConfig(PasswordEncoder passwordEncoder, UserAuthServiceWrapper userAuthServiceWrapper) {
@@ -45,7 +45,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and() 
 			.httpBasic();
 	}
-	
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

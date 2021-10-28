@@ -13,6 +13,9 @@ import de.fraunhofer.dataspaces.iese.systemadapter.data.FraunhoferDataSpace;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.postgres.Payload;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.postgres.PayloadPostgresService;
 
+/**
+ * This class contains entries for Postgres Database that are used throughout application. They do not represent real entries.
+ */
 @Component
 @EnableTransactionManagement
 public class DummyDatabasePostgres {

@@ -1,9 +1,11 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.form.requestbody;
 
-
 import de.fraunhofer.dataspaces.iese.systemadapter.validation.annotations.NotBlank;
 import de.fraunhofer.dataspaces.iese.systemadapter.validation.annotations.Size;
 
+/**
+ * This class contains information consumed by java request during UserSignInFormRequest
+ */
 public class UserSignInFormRequestBody {
 	
 	@NotBlank(message="E-mail Address should not be blank")

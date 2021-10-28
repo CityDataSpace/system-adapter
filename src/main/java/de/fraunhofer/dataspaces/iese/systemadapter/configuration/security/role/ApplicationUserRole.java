@@ -9,6 +9,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.google.common.collect.Sets;
 
+/**
+ * This enum contains user roles
+ */
 public enum ApplicationUserRole {
 	
 	STUDENT     (Sets.newHashSet(STUDENT_READ, STUDENT_WRITE)),
