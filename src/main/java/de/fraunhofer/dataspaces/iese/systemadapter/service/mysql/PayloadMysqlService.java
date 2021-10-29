@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import de.fraunhofer.dataspaces.iese.systemadapter.data.formatter.PayloadFormatter;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.Payload;
 import de.fraunhofer.dataspaces.iese.systemadapter.repository.mysql.PayloadMysqlRepository;
 
@@ -13,7 +14,7 @@ import de.fraunhofer.dataspaces.iese.systemadapter.repository.mysql.PayloadMysql
  * This class provides a service to Payload Mysql Repository
  */
 @Service 
-public class PayloadMysqlService {
+public class PayloadMysqlService implements PayloadFormatter<Payload> {
 
 	@Autowired
 	private PayloadMysqlRepository payloadMysqlRepository;
@@ -23,13 +24,13 @@ public class PayloadMysqlService {
 	 * @param payloads
 	 * @return list of reformatted payloads
 	 */
-	private List<Payload> reformatPayloadData(List<Payload> payloads) {
-		
+	@Override
+	public List<Payload> reformatPayloadData(List<Payload> payloads) {
 		for(Payload payload : payloads) {
 			payload.setData(payload.getData().replace("\"\"", "\"").replace("}\"", "}"));
 		}
 		
-		return payloads;	
+		return payloads;
 	}
 	
 	/**

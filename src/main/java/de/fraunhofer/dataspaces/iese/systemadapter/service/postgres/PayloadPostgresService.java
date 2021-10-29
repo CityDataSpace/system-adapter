@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import de.fraunhofer.dataspaces.iese.systemadapter.data.formatter.PayloadFormatter;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.postgres.Payload;
 import de.fraunhofer.dataspaces.iese.systemadapter.repository.postgres.PayloadPostgresRepository;
 
@@ -13,7 +14,7 @@ import de.fraunhofer.dataspaces.iese.systemadapter.repository.postgres.PayloadPo
  * This class provides a service to Payload Postgres Repository
  */
 @Service
-public class PayloadPostgresService {
+public class PayloadPostgresService implements PayloadFormatter<Payload> {
 	
 	@Autowired
 	private PayloadPostgresRepository payloadPostgresRepository;
@@ -23,7 +24,8 @@ public class PayloadPostgresService {
 	 * @param payloads
 	 * @return list of reformatted payloads
 	 */
-	private List<Payload> reformatPayloadData(List<Payload> payloads) {
+	@Override
+	public List<Payload> reformatPayloadData(List<Payload> payloads) {
 		
 		for(Payload payload : payloads) {
 			payload.setData(payload.getData().replace("\"\"", "\"").replace("}\"", "}"));
