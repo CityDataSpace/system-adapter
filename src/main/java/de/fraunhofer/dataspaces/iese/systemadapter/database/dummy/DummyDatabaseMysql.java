@@ -1,7 +1,7 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.database.dummy;
 
-
 import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role.ApplicationUserRole.*;
+import static de.fraunhofer.dataspaces.iese.systemadapter.data.database.type.DatabaseType.*;
 
 import java.util.UUID;
 
@@ -23,10 +23,16 @@ import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.RegistrationMys
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.RoleMysqlService;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlService;
 
+/**
+ * This class contains entries for Mysql Database that are used throughout application. They do not represent real entries.
+ */
 @Component
 @EnableTransactionManagement
 public class DummyDatabaseMysql {
-
+	
+	@Autowired
+	DummyUserCredentials dummyUserCredentials;
+	
 	@Autowired
 	private UserMysqlService userMysqlService;
 	
@@ -45,10 +51,10 @@ public class DummyDatabaseMysql {
 		Registration registration = new Registration();
 	
 		
-		user.setName("Arian");
-		user.setSurname("Ajdari");
-		user.setEmail("arianajdari94@gmail.com");
-		user.setPassword("changeme");
+		user.setName(dummyUserCredentials.getName());
+		user.setSurname(dummyUserCredentials.getSurname());
+		user.setEmail(dummyUserCredentials.getUsername());
+		user.setPassword(dummyUserCredentials.getPassword());
 		user.setAccountNonExpired(true);
 		user.setAccountNonLocked(true);
 		user.setCredentialsNonExpired(true);
@@ -59,7 +65,7 @@ public class DummyDatabaseMysql {
 		role.setUser(user);
 		roleMysqlService.save(role);
 		
-		registration.setRegisteredDatabases(0);
+		registration.setRegisteredDatabases(MYSQL.getDatabaseType());
 		registration.setUser(user);
 		registrationMysqlService.save(registration);
 	}

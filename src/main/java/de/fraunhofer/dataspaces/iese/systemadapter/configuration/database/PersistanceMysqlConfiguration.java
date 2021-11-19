@@ -17,6 +17,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
+/**
+ * This class serves as a configuration class for Mysql JPA Repository
+ */
 @Configuration
 @PropertySource({ "classpath:database/database.properties", "classpath:database/mysql.properties" })
 @EnableJpaRepositories(

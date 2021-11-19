@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * This class contains information consumed by ResponseEntity java class during RegistrationPageGetRequestRequest
+ */
 @Service
 public class RegistrationPageGetRequestResponse {
 	

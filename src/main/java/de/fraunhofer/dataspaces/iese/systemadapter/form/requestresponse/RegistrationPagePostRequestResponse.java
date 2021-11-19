@@ -2,6 +2,9 @@ package de.fraunhofer.dataspaces.iese.systemadapter.form.requestresponse;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * This class contains information consumed by ResponseEntity java class during RegistrationPagePostRequest
+ */
 @Service
 public class RegistrationPagePostRequestResponse {
 	

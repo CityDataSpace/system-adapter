@@ -4,6 +4,9 @@ import de.fraunhofer.dataspaces.iese.systemadapter.validation.annotations.Capita
 import de.fraunhofer.dataspaces.iese.systemadapter.validation.annotations.NotBlank;
 import de.fraunhofer.dataspaces.iese.systemadapter.validation.annotations.Size;
 
+/**
+ * This class contains information consumed by java request during UserSignUpFormRequest
+ */
 public class UserSignUpFormRequestBody {
 	
 	@NotBlank(message="Name should not be blank")

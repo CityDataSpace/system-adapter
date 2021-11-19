@@ -11,6 +11,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import de.fraunhofer.dataspaces.iese.systemadapter.database.dummy.DummyDatabaseMysql;
 import de.fraunhofer.dataspaces.iese.systemadapter.database.dummy.DummyDatabasePostgres;
 
+/**
+ * System Adapter
+ */
 @SpringBootApplication
 public class SystemadapterApplication {
 	

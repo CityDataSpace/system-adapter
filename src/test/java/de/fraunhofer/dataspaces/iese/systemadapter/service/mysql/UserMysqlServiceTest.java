@@ -60,7 +60,7 @@ public class UserMysqlServiceTest {
 		user.setName(NAME);
 		user.setSurname(SURNAME);
 		user.setEmail(EMAIL);
-		user.setPassword(passwordEncoder.encode(PASSWORD));
+		user.setPassword(PASSWORD);
 		
 		newlyCreatedUser = userMysqlService.saveAndReturn(user);		
 	}

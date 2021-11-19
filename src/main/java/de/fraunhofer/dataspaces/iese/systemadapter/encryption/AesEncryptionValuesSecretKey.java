@@ -16,6 +16,10 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.persistence.AttributeConverter;
 
+/**
+ * This class implements AesEncryption with secret key by implementing methods from AttributeConverter interface
+ * Note: only values of JSON input are encrypted, keys are not encrypted.
+ */
 public class AesEncryptionValuesSecretKey implements AttributeConverter<String, String> {
 	
 	private static final String AES = "AES/CBC/PKCS5Padding";

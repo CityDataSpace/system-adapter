@@ -11,6 +11,9 @@ import de.fraunhofer.dataspaces.iese.systemadapter.form.requestresponse.ProfileP
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlService;
 
+/**
+ * This controller exposes the routes for ProfilePage.
+ */
 @Controller
 @RequestMapping("/")
 public class ProfilePageController {
@@ -18,6 +21,11 @@ public class ProfilePageController {
 	@Autowired
 	private UserMysqlService userMysqlService;
 
+	/**
+	 * This function gets basic information about logged in user.
+	 * @param userId
+	 * @return response entity
+	 */
 	@GetMapping("getuser/{userId}")
 	public ResponseEntity<ProfilePageRequestResponse> loginPageRedirect(@PathVariable Integer userId) {
 		

@@ -1,6 +1,8 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.form.requestbody;
 
-
+/**
+ * This class contains information consumed by java request during RegistrationPagePostRequest
+ */
 public class RegistrationPagePostRequestBody {
 
 	private int databaseType;

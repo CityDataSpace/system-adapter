@@ -22,6 +22,10 @@ import javax.persistence.AttributeConverter;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+/**
+ * This class implements RSA Encryption by implementing methods from AttributeConverter interface
+ * Note: only values of JSON input are encrypted, keys are not encrypted.
+ */
 public class RsaEncryption implements AttributeConverter<String, String> {
 
 	private static final String AES = "AES/CBC/PKCS5Padding";

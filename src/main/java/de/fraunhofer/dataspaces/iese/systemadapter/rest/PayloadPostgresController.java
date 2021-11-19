@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import de.fraunhofer.dataspaces.iese.systemadapter.model.postgres.Payload;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.postgres.PayloadPostgresService;
 
+/**
+ * This class is a controller exposing routes to access Postgres Database
+ */
 @RestController
 @RequestMapping("/api/postgres")
 public class PayloadPostgresController {

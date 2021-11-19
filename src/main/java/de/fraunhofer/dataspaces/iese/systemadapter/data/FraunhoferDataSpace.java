@@ -1,5 +1,8 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.data;
 
+/**
+ * This class is used as a container data field in payload models
+ */
 public class FraunhoferDataSpace {
 	
 	private String name;
@@ -42,6 +45,5 @@ public class FraunhoferDataSpace {
 	public String toString() {
 		return "FraunhoferDataSpace [name=" + name + ", duration=" + duration + ", type=" + type + "]";
 	}
-	
 	
 }

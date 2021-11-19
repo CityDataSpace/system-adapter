@@ -1,7 +1,5 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role;
 
-
-
 import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role.ApplicationUserPermission.*;
 
 import java.util.Set;
@@ -11,12 +9,19 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.google.common.collect.Sets;
 
+/**
+ * This enum contains user roles
+ */
 public enum ApplicationUserRole {
 	
-	STUDENT(Sets.newHashSet(STUDENT_READ, STUDENT_WRITE)),
-	ADMIN(Sets.newHashSet(COURSE_READ, COURSE_WRITE, STUDENT_READ, STUDENT_WRITE)),
-	ADMINTRAINEE(Sets.newHashSet(COURSE_READ, STUDENT_READ));
+	STUDENT     (Sets.newHashSet(STUDENT_READ, STUDENT_WRITE)),
 	
+	ADMIN       (Sets.newHashSet(ADMIN_READ, ADMIN_WRITE, 
+			                     ADMIN_TRAINEE_READ, ADMIN_TRAINEE_WRITE, 
+			                     STUDENT_READ, STUDENT_WRITE)),
+	
+	ADMINTRAINEE(Sets.newHashSet(ADMIN_TRAINEE_READ, ADMIN_TRAINEE_WRITE, 
+			                     STUDENT_WRITE, STUDENT_READ));
 	
 	private final Set<ApplicationUserPermission> permissions;
 	
@@ -34,6 +39,5 @@ public enum ApplicationUserRole {
 		permissions.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
 		return permissions;
 	}
-	
 
 }

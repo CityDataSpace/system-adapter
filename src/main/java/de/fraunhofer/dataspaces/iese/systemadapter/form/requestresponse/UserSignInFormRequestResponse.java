@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-
+/**
+ * This class contains information consumed by ResponseEntity java class during UserSignInFormRequest
+ */
 @Service
 public class UserSignInFormRequestResponse{
 	

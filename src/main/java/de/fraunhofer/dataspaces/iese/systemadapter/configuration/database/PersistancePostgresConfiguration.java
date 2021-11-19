@@ -16,6 +16,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
+/**
+ * This class serves as a configuration class for Postgres JPA Repository
+ */
 @Configuration
 @PropertySource({ "classpath:database/database.properties", "classpath:database/postgres.properties" })
 @EnableJpaRepositories(
