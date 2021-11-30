@@ -12,6 +12,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.PathSelectors;
 
+/**
+ * This class is used as a configuration class for Swagger UI
+ */
 @Component
 @Configuration
 @EnableSwagger2
