@@ -1,5 +1,6 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.database.dummy;
 
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ public class DummyDatabasePostgres {
 		fraunhoferDataSpace
 			.setName("My Policy")
 			.setDuration("3 days")
-			.setType("Restriction");
+			.setType("Restriction")
+			.setDate(new Date());
 		
 		payload.setHeaderId(UUID.randomUUID());
 		payload.setData(new ObjectMapper().writeValueAsString(fraunhoferDataSpace));
@@ -48,7 +50,8 @@ public class DummyDatabasePostgres {
 		fraunhoferDataSpace
 			.setName("My Policy")
 			.setDuration("3 days")
-			.setType("Allowance");
+			.setType("Allowance")
+			.setDate(new Date());
 		
 		payload.setHeaderId(UUID.randomUUID());
 		payload.setData(new ObjectMapper().writeValueAsString(fraunhoferDataSpace));
