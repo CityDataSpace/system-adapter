@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.TestMethodOrder;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -46,11 +47,15 @@ public class PayloadMysqlServiceTest {
 	private final String DATA;
 	
 	public PayloadMysqlServiceTest() throws JsonProcessingException {
-		this.DATA = new ObjectMapper()
-						.writeValueAsString(new FraunhoferDataSpace()
-								.setName("Policy")
-								.setType("Restriction")
-								.setDuration("2 Days"));
+		FraunhoferDataSpace fraunhoferDataSpace = new FraunhoferDataSpace();
+		
+		fraunhoferDataSpace
+			.setName("My Policy")
+			.setDuration("2 days")
+			.setType("Restriction")
+			.setDate(LocalDateTime.now());
+		
+		this.DATA = new ObjectMapper().writeValueAsString(fraunhoferDataSpace);
 	}
 	
 
@@ -60,6 +65,8 @@ public class PayloadMysqlServiceTest {
 		
 		payload.setHeaderId(HEADER_ID);
 		payload.setData(DATA);
+		
+		
 		
 		newlyCreatedPayload = payloadMysqlService.saveAndReturn(payload);
 	}

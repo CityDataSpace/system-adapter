@@ -3,7 +3,7 @@ package de.fraunhofer.dataspaces.iese.systemadapter.database.dummy;
 import static de.fraunhofer.dataspaces.iese.systemadapter.configuration.security.role.ApplicationUserRole.*;
 import static de.fraunhofer.dataspaces.iese.systemadapter.data.database.type.DatabaseType.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +81,7 @@ public class DummyDatabaseMysql {
 			.setName("My Policy")
 			.setDuration("2 days")
 			.setType("Restriction")
-			.setDate(new Date());
+			.setDate(LocalDateTime.now());
 		
 		payload.setHeaderId(UUID.randomUUID());
 		payload.setData(new ObjectMapper().writeValueAsString(fraunhoferDataSpace));
@@ -99,7 +99,7 @@ public class DummyDatabaseMysql {
 			.setName("My Policy")
 			.setDuration("2 days")
 			.setType("Restriction")
-			.setDate(new Date());
+			.setDate(LocalDateTime.now());
 		
 		payload.setHeaderId(UUID.randomUUID());
 		payload.setData(new ObjectMapper().writeValueAsString(fraunhoferDataSpace));
