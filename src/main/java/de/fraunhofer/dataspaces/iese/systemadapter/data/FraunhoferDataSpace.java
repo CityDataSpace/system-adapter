@@ -1,5 +1,7 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.data;
 
+import java.util.Date;
+
 /**
  * This class is used as a container data field in payload models
  */
@@ -10,6 +12,8 @@ public class FraunhoferDataSpace {
 	private String duration;
 	
 	private String type;
+	
+	private Date date;
 
 	public String getName() {
 		return name;
@@ -39,6 +43,15 @@ public class FraunhoferDataSpace {
 		this.type = type;
 		
 		return this;
+	}
+	
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Override
