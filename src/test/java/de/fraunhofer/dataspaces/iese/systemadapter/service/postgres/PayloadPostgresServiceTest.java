@@ -3,6 +3,7 @@ package de.fraunhofer.dataspaces.iese.systemadapter.service.postgres;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,11 +46,17 @@ public class PayloadPostgresServiceTest {
 	private final String DATA;
 	
 	public PayloadPostgresServiceTest() throws JsonProcessingException {
-		this.DATA = new ObjectMapper()
-						.writeValueAsString(new FraunhoferDataSpace()
-								.setName("Policy")
-								.setType("Restriction")
-								.setDuration("2 Days"));
+		
+		FraunhoferDataSpace fraunhoferDataSpace = new FraunhoferDataSpace();
+		
+		fraunhoferDataSpace
+			.setName("My Policy")
+			.setDuration("2 days")
+			.setType("Restriction")
+			.setDate(LocalDateTime.now());
+		
+		this.DATA = new ObjectMapper().writeValueAsString(fraunhoferDataSpace);
+								
 	}
 	
 	@PostConstruct

@@ -1,6 +1,7 @@
 package de.fraunhofer.dataspaces.iese.systemadapter.data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 /**
  * This class is used as a container data field in payload models
@@ -13,7 +14,7 @@ public class FraunhoferDataSpace {
 	
 	private String type;
 	
-	private Date date;
+	private String date;
 
 	public String getName() {
 		return name;
@@ -41,17 +42,16 @@ public class FraunhoferDataSpace {
 
 	public FraunhoferDataSpace setType(String type) {
 		this.type = type;
-		
 		return this;
 	}
 	
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(LocalDateTime  date) {
+		this.date = Long.toString(date.toEpochSecond(ZoneOffset.UTC));
 	}
 
 	@Override
