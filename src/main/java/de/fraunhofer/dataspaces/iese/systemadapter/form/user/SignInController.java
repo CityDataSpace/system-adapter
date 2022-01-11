@@ -20,6 +20,7 @@ import de.fraunhofer.dataspaces.iese.systemadapter.form.requestresponse.UserSign
 import de.fraunhofer.dataspaces.iese.systemadapter.model.mysql.User;
 import de.fraunhofer.dataspaces.iese.systemadapter.service.mysql.UserMysqlService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/user/sign")
 public class SignInController {
@@ -40,7 +41,6 @@ public class SignInController {
 	}
 	
 	@PostMapping("/signin")
-	@CrossOrigin(origins = "http://localhost:3000/")
 	public ResponseEntity<UserSignInFormRequestResponse> signInUser(@RequestBody UserSignInFormRequestBody request) {
 		
 		UserSignInFormRequestResponse userSignInFormRequestResponse = new UserSignInFormRequestResponse();
